@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
-    <Document id="305">
-        <Style id="308">
-            <IconStyle id="310">
+    <Document id="1217">
+        <Style id="1220">
+            <IconStyle id="1222">
                 <colorMode>normal</colorMode>
                 <scale>1</scale>
                 <heading>0</heading>
-                <Icon id="311">
+                <Icon id="1223">
                     <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
                 </Icon>
             </IconStyle>
-            <LabelStyle id="309">
+            <LabelStyle id="1221">
                 <color>ff0000ff</color>
                 <colorMode>normal</colorMode>
                 <scale>1.5</scale>
             </LabelStyle>
         </Style>
         <open>1</open>
-        <Placemark id="307">
+        <Placemark id="1219">
             <name>NAU_2021_09</name>
-            <styleUrl>#308</styleUrl>
-            <Point id="306">
+            <styleUrl>#1220</styleUrl>
+            <Point id="1218">
                 <coordinates>-49.53165343124999,73.8405574789352,0.0</coordinates>
                 <altitudeMode>relativeToGround</altitudeMode>
             </Point>

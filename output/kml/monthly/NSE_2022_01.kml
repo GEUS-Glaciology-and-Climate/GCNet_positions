@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
-    <Document id="241">
-        <Style id="244">
-            <IconStyle id="246">
+    <Document id="1153">
+        <Style id="1156">
+            <IconStyle id="1158">
                 <colorMode>normal</colorMode>
                 <scale>1</scale>
                 <heading>0</heading>
-                <Icon id="247">
+                <Icon id="1159">
                     <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
                 </Icon>
             </IconStyle>
-            <LabelStyle id="245">
+            <LabelStyle id="1157">
                 <color>ff0000ff</color>
                 <colorMode>normal</colorMode>
                 <scale>1.5</scale>
             </LabelStyle>
         </Style>
         <open>1</open>
-        <Placemark id="243">
+        <Placemark id="1155">
             <name>NSE_2022_01</name>
-            <styleUrl>#244</styleUrl>
-            <Point id="242">
+            <styleUrl>#1156</styleUrl>
+            <Point id="1154">
                 <coordinates>-42.49348910416666,66.47772927867383,0.0</coordinates>
                 <altitudeMode>relativeToGround</altitudeMode>
             </Point>

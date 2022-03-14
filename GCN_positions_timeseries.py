@@ -4,17 +4,17 @@
 
 @author: jeb@geus.dk
 
+obtain monthly coordinates from transmissions
+
+input:
+    aws IMEI numbered decoded SBD transmissions
+    
+output:
+    monthly Google Earth placemarkers
+    the attached table, equivalent with that for PROMICE ESSD positions table after https://github.com/GEUS-Glaciology-and-Climate/PROMICE_positions
+    graphics like in the ESSD
 
 """
-
-sites=['SWC','CP1','SDM','NSE','NUK_U']
-
-site='CP1'
-site='SDM'
-# site='NSE'
-# site='SWC'
-# site='NUK_U'
-
 import math
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -27,14 +27,11 @@ import sys
 import simplekml
 import geopy.distance
 
-# -------------------------------- chdir
+# -------------------------------- set the working path automatically
 if os.getlogin() == 'jason':
-    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/'
-
+    base_path = '/Users/jason/Dropbox/AWS/GCNet_positions/'
 os.chdir(base_path)
-
 sys.path.append(base_path)
-
 
 figure(num=None, figsize=(8, 6), dpi=80, facecolor='w', edgecolor='k')
 th=1 
@@ -70,34 +67,28 @@ for site_index,site in enumerate(sites):
     # if site=='CEN':
 
         if site=='SWC':
-            a_or_b='(a)'
             site2='Swiss Camp'
             IMEI='300534060524310'# ; lat=69+33.21479/60 ;lon=-(49+22.297377/60); elev=1148
             swd_coef=12.00 ; swu_coef=18.00
         
         if site=='NUK_U':
-            a_or_b='(a)'
             site2='NUK_U'
             xtit='UTC time, year 2021'
             swd_coef=1 ; swu_coef=1
             
         if site=='SDM':
-            a_or_b='(b)'
             IMEI='300534060529220' ; site2='South Dome' #; lat=63.14889	;lon=-44.81667; elev=2895
             swd_coef=14.75 ; swu_coef=14.44
         
         if site=='NSE':
-            a_or_b='(b)'
             IMEI='300534062416350' ; site2='NASA-SE' #; lat=66.2866629	;lon=-42.2961828; elev=2386
             swd_coef=12.66 ; swu_coef=13.9
             swd_coef=12.66 ; swu_coef=13.90
         
         if site=='CP1':
-            a_or_b='(b)'
             IMEI='300534062418810' ; site2='Crawford Pt. (CP1)'#; lat=69.8819; lon=-46.97358; elev=1958
             swd_coef=15.72 ; swu_coef=12.18
                 
-        
         if site=='CEN':
             IMEI='300534062419950'; site2='Camp Century' #; lat=69.8819; lon=-46.97358; elev=1958
         
@@ -347,7 +338,7 @@ for site_index,site in enumerate(sites):
         df1d["elev std"]=pd.Series(elev_std)
         df1d['elev std'] = df1d['elev std'].apply(lambda x: '%.1f' % x)
         df1d["elev count"]=pd.Series(elev_count)
-        ofile='/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/'+site+'_positions_monthly'
+        ofile='./output/'+site+'_positions_monthly'
         df1d.to_csv(ofile+'.csv',index=None)
         print(df1d)
         # df1d.to_excel(ofile+'.xlsx')
@@ -385,7 +376,7 @@ for site_index,site in enumerate(sites):
     # if site=='CP1':
     # if site=='SDM':
 
-        df=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/'+site+'_positions_monthly.csv')
+        df=pd.read_csv('./output/'+site+'_positions_monthly.csv')
         for col in df.columns:
             df[col] = pd.to_numeric(df[col])
         df['day']=15
@@ -475,9 +466,10 @@ for site_index,site in enumerate(sites):
         print(years[st])
 
 
-        if ((ly=='p')&(write_fig)): plt.savefig('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/figs/'+stnam+'.png', dpi=72,bbox_inches = 'tight')
+        if ((ly=='p')&(write_fig)): plt.savefig('./figs/'+stnam+'.png', dpi=72,bbox_inches = 'tight')
         if ly=='x':plt.show()
 
+#%% output multi-site table
 
 df2 = pd.DataFrame(columns=['site name','first valid date','latest valid date','delta time','first valid latitude, °N','latest valid latitude, °N','first valid longitude, °W','latest valid longitude, °W','displacement, m','displacement rate, m/y','first valid elevation, m','latest valid elevation, m','elevation change, m'])
 df2['site name']=pd.Series(sites)
@@ -500,50 +492,17 @@ df2['elevation change, m'] = df2['elevation change, m'].map(lambda x: '%.0f' % x
 df2['delta time'] = df2['delta time'].map(lambda x: '%.1f' % x)
 df2['first valid elevation, m'] = df2['first valid elevation, m'].map(lambda x: '%.0f' % x)
 df2['latest valid elevation, m'] = df2['latest valid elevation, m'].map(lambda x: '%.0f' % x)
-df2['first valid latitude, °N'] = df2['first valid latitude, °N'].map(lambda x: '%.4f' % x)
-df2['latest valid latitude, °N'] = df2['latest valid latitude, °N'].map(lambda x: '%.4f' % x)
-df2['first valid longitude, °W'] = df2['first valid longitude, °W'].map(lambda x: '%.4f' % x)
-df2['latest valid longitude, °W'] = df2['latest valid longitude, °W'].map(lambda x: '%.4f' % x)
+df2['first valid latitude, °N'] = df2['first valid latitude, °N'].map(lambda x: '%.6f' % x)
+df2['latest valid latitude, °N'] = df2['latest valid latitude, °N'].map(lambda x: '%.6f' % x)
+df2['first valid longitude, °W'] = df2['first valid longitude, °W'].map(lambda x: '%.6f' % x)
+df2['latest valid longitude, °W'] = df2['latest valid longitude, °W'].map(lambda x: '%.6f' % x)
 df2['displacement rate, m/y'] = df2['displacement rate, m/y'].map(lambda x: '%.1f' % x)
 
-if wo:df2.to_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/GCN_positions_distance_stats.csv',sep=';')
-if wo:df2.to_excel('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/GCN_positions_distance_stats.xlsx')
+if wo:df2.to_csv('./output/GCN_positions_distance_stats.csv',sep=';')
+if wo:df2.to_excel('./output/GCN_positions_distance_stats.xlsx')
 
 print("average displacement rate",np.nanmean(df2["displacement rate, m/y"].astype(float)))
 print("average displacement rate",np.nanstd(df2["displacement rate, m/y"].astype(float)))
 print("elevation change, m",np.nanmean(df2["elevation change, m"].astype(float)))
 print("elevation change, m",np.nanstd(df2["elevation change, m"].astype(float)))
-#         #%%
-#         opath='/Users/jason/Dropbox/AWS/GCNet_positions/output/'
-#         out=open(opath+site+'_latest_position.csv','w+')
-#         out.write('site,nickname,latest date,latitude decimal,longitude decimal,latitude degrees,latitude decimal minutes,longitude degrees,longitude decimal minutes,elevation\n')
-#         out.write(site2+','+\
-#             site+','+\
-#               df.time[-1].strftime('%Y-%m-%d')+','+\
-#               "{:.4f}".format(lat)+','+\
-#               "{:.4f}".format(lon)+','+\
-#               "{:.0f}".format(int(lat))+','+\
-#               "{:.4f}".format(lat_min)+','+\
-#               "{:.0f}".format(int(lon))+','+\
-#               "{:.4f}".format(lon_min)+','+\
-#               "{:.0f}".format(elevx)
-#               )
-#         out.close()
-#         #%%
 
-
-
-# #%% read instrument height data
-# from glob import glob
-
-# files = sorted(glob(opath+"*.csv"), reverse=False)
-
-# z_df=pd.read_csv(files[0])
-# for i,file in enumerate(files):
-#     print(i,file)
-#     if i>0:
-#         z_df = pd.concat([z_df,pd.read_csv(files[i])])
-
-# print(z_df)
-
-# z_df.to_excel(opath+'GCN_latest_positions.xlsx',index=None)
