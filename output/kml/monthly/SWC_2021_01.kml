@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
-    <Document id="945">
-        <Style id="948">
-            <IconStyle id="950">
+    <Document id="169">
+        <Style id="172">
+            <IconStyle id="174">
                 <colorMode>normal</colorMode>
                 <scale>1</scale>
                 <heading>0</heading>
-                <Icon id="951">
+                <Icon id="175">
                     <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
                 </Icon>
             </IconStyle>
-            <LabelStyle id="949">
+            <LabelStyle id="173">
                 <color>ff0000ff</color>
                 <colorMode>normal</colorMode>
                 <scale>1.5</scale>
             </LabelStyle>
         </Style>
         <open>1</open>
-        <Placemark id="947">
+        <Placemark id="171">
             <name>SWC_2021_01</name>
-            <styleUrl>#948</styleUrl>
-            <Point id="946">
+            <styleUrl>#172</styleUrl>
+            <Point id="170">
                 <coordinates>-49.370466466352624,69.55389995580978,0.0</coordinates>
                 <altitudeMode>relativeToGround</altitudeMode>
             </Point>

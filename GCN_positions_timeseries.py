@@ -29,7 +29,7 @@ import geopy.distance
 
 # -------------------------------- set the working path automatically
 if os.getlogin() == 'jason':
-    base_path = '/Users/jason/Dropbox/AWS/GCNet_positions/'
+    base_path = '/Users/jason/Dropbox/AWS/GCNet/GCNet_positions/'
 os.chdir(base_path)
 sys.path.append(base_path)
 
@@ -60,8 +60,8 @@ sites=['SWC','SDM','NSE','CP1','NAU','CEN','NEM','JAR']
 n_sites=len(sites)
 
 for site_index,site in enumerate(sites):
-    if site_index!=10:
-#     # if site=='SWC':
+    # if site_index!=10:
+    if site=='SWC':
     # if site=='CP1':
     # if site=='SDM':
     # if site=='CEN':
@@ -108,14 +108,22 @@ for site_index,site in enumerate(sites):
         # -------------- copy of raw file names to an easier to understand format
         if ((site!='NUK_U')&(site!='QAS_U')):
             fn='/Users/jason/Dropbox/AWS/aws_data/AWS_'+IMEI+'.txt' 
+            fn='/Users/jason/Dropbox/AWS/test/aws_data/AWS_'+IMEI+'.txt' 
         else:
             fn='/Users/jason/Dropbox/AWS/PROMICE/PROMICE_v04/'+site+'_hour_v04.txt'
+
+        fn2="/tmp/"+IMEI+".txt"
+        msg="sed 's/,,/,/g' "+fn+" > "+fn2
+        os.system(msg)
+        fn=fn2    
+
         # os.system('/bin/cp '+fn+' ./AWS_info/AWS_data/'+site+'.txt')
         
         # fn='./AWS_info/AWS_data/'+site+'.txt'
         # cols=np.arange(0,49).astype(str)
         
         cols=['time','counter','Pressure_L','Pressure_U','Asp_temp_L','Asp_temp_U','Humidity_L','Humidity_U','WindSpeed_L','WindDirection_L','WindSpeed_U','WindDirection_U','SW Downward','SW Upward','LW Downward','LW Upward','TemperatureRadSensor','SR_L','SR_U','T_firn_1','T_firn_2','T_firn_3','T_firn_4','T_firn_5','T_firn_6','T_firn_7','T_firn_8','T_firn_9','T_firn_10','T_firn_11','Roll','Pitch','Heading','Rain_amount_L','Rain_amount_U','counterx','Latitude','Longitude','Altitude','ss','Giodal','GeoUnit','Battery','NumberSatellites','HDOP','FanCurrent_L','FanCurrent_U','Quality','LoggerTemp']
+
         varnamx=['time','counter','Pressure_L','Pressure_U','air temperature','air temperature','Humidity_L','Humidity_U','WindSpeed_L','WindDirection_L','WindSpeed_U','WindDirection_U','SW Downward','SW Upward','LW Downward\nSky Tempearure_effective','LW Upward','TemperatureRadSensor','SR_L','SR_U','T_firn_1','T_firn_2','T_firn_3','T_firn_4','T_firn_5','T_firn_6','T_firn_7','T_firn_8','T_firn_9','T_firn_10','T_firn_11','Roll','Pitch','Heading','rainfall','rainfall','counterx','Latitude','Longitude','Altitude','ss','Giodal','GeoUnit','Battery','NumberSatellites','HDOP','FanCurrent_L','FanCurrent_U','Quality','LoggerTemp']
         unitsx=['time','counter','Pressure_L','Pressure_U','deg. C','deg. C','Humidity_L','Humidity_U','WindSpeed_L','WindDirection_L','WindSpeed_U','WindDirection_U','SW Downward','SW Upward','LW Downward','LW Upward','TemperatureRadSensor','SR_L','SR_U','T_firn_1','T_firn_2','T_firn_3','T_firn_4','T_firn_5','T_firn_6','T_firn_7','T_firn_8','T_firn_9','T_firn_10','T_firn_11','Roll','Pitch','Heading','mm','mm','counterx','Latitude','Longitude','Altitude','ss','Giodal','GeoUnit','Battery','NumberSatellites','HDOP','FanCurrent_L','FanCurrent_U','Quality','LoggerTemp']
         
@@ -137,8 +145,8 @@ for site_index,site in enumerate(sites):
         if site=='CEN':
             skip=4
             df=pd.read_csv(fn,header=None,names=cols,skiprows=skip)
-        if site=='JAR':
-            df=pd.read_csv(fn,header=None,names=cols,skiprows=skip)
+        # if site=='JAR':
+        #     df=pd.read_csv(fn,header=None,names=cols,skiprows=skip)
 
             # cols=['time','counter','Pressure_L','Pressure_U','Asp_temp_L','Asp_temp_U','Humidity_L','Humidity_U','WindSpeed_L','WindDirection_L','WindSpeed_U','WindDirection_U','SW Downward','SW Upward','LW Downward','LW Upward','TemperatureRadSensor','SR_L','SR_U','T_firn_1','T_firn_2','T_firn_3','T_firn_4','T_firn_5','T_firn_6','T_firn_7','T_firn_8','T_firn_9','T_firn_10','T_firn_11','Roll','Pitch','Heading','Rain_amount_L','Rain_amount_U','counterx','Latitude','Longitude','Altitude','ss','Giodal','GeoUnit','Battery','NumberSatellites','HDOP','FanCurrent_L','FanCurrent_U','Quality','LoggerTemp']
         #     df=pd.read_csv(fn,header=None,names=cols,skiprows=skip)
@@ -181,13 +189,15 @@ for site_index,site in enumerate(sites):
             # print(df)
             
         if site=='SWC'or site=='JAR':
-            skip=4
+            skip=5
             cols=['time','seconds_since_1990','Pressure_L','Asp_temp_L','Humidity_L','WindSpeed_L','winddirection_s_l',
                   'SW Upward','SW Downward',
                  'LW Downward','LW Upward','TemperatureRadSensor','SR_L','SR_U','solar?',
                  'thermistorstring_1','thermistorstring_2','thermistorstring_3','thermistorstring_4','thermistorstring_5','thermistorstring_6','thermistorstring_7','thermistorstring_8',
                  'roll','pitch','heading','Rain_amount_L','gpstime','Latitude','Longitude','Altitude','giodal','geounit?',
                  'battvolt','?1','asp_temp_u','humidity_u','##','##2','##3']
+
+            
             varnamx=['time','seconds_since_1990','pressure_l','Asp_temp_L','humidity_l','WindSpeed_L','winddirection_s_l','swupper','swlower',
                  'lwupper','lwlower','temperatureradsensor','sr_l','sr_u','solar?',
                  'thermistorstring_1','thermistorstring_2','thermistorstring_3','thermistorstring_4','thermistorstring_5','thermistorstring_6','thermistorstring_7','thermistorstring_8',
@@ -198,10 +208,15 @@ for site_index,site in enumerate(sites):
                  'thermistorstring_1','thermistorstring_2','thermistorstring_3','thermistorstring_4','thermistorstring_5','thermistorstring_6','thermistorstring_7','thermistorstring_8',
                  'roll','pitch','heading','mm','gpstime','Latitude','Longitude','Altitude','giodal','geounit?',
                  'battvolt','?1','asp_temp_u','humidity_u','##','##2','##3']
-        
-            df=pd.read_csv(fn,header=None,names=cols,skiprows=skip)
-            df.Latitude=df.Latitude.astype(float)
-        
+
+
+            df=pd.read_csv(fn,header=None,skiprows=skip,names=cols)
+            df.columns
+            # df.Latitude=df.Latitude.astype(float)
+            
+            # print(df)
+            # print(site)
+            # sasas
         df[df=="NAN"]=np.nan
         
         if site!='NUK_U':
@@ -235,19 +250,37 @@ for site_index,site in enumerate(sites):
         
         # df = df.loc[df['time']<'2021-09-01',:] 
 
+        # ------------------- position
+        df.Latitude=df.Latitude.astype(float)
+        df.Longitude=df.Longitude.astype(float)
+        df.Altitude=df.Altitude.astype(float)
         ##%% lat lon slow
         df['Lat_decimal']=np.nan
         df['Lon_decimal']=np.nan
         
-        df.Latitude[df.Latitude=='nan']=np.nan
-        df.Longitude[df.Longitude=='nan']=np.nan
+        v=np.where(np.isfinite(df.Latitude))
+        v=v[0]
+        df['lat_min']=np.nan
+        df['lon_min']=np.nan
+        df['Lat_decimal']=np.nan
+        df['Lon_decimal']=np.nan
+        df['lat_min'][v]=(df.Latitude[v]/100-(df.Latitude[v]/100).astype(int))*100
+        df['lon_min'][v]=(df.Longitude[v]/100-(df.Longitude[v]/100).astype(int))*100
+        df['Lat_decimal'][v]=(df.Latitude[v]/100).astype(int)+df['lat_min'][v]/60
+        df['Lon_decimal'][v]=(df.Longitude[v]/100).astype(int)+df['lon_min'][v]/60
+        ##%% lat lon slow
+        # df['Lat_decimal']=np.nan
+        # df['Lon_decimal']=np.nan
         
-        for i in range(len(df)):
-            if np.isfinite(df.Latitude[i]):
-                lat_min=(df.Latitude[i]/100-int(df.Latitude[i]/100))*100
-                lon_min=(df.Longitude[i]/100-int(df.Longitude[i]/100))*100
-                df['Lat_decimal'][i]=int(df.Latitude[i]/100)+lat_min/60
-                df['Lon_decimal'][i]=int(df.Longitude[i]/100)+lon_min/60
+        # df.Latitude[df.Latitude=='nan']=np.nan
+        # df.Longitude[df.Longitude=='nan']=np.nan
+        
+        # for i in range(len(df)):
+        #     if np.isfinite(df.Latitude[i]):
+        #         lat_min=(df.Latitude[i]/100-int(df.Latitude[i]/100))*100
+        #         lon_min=(df.Longitude[i]/100-int(df.Longitude[i]/100))*100
+        #         df['Lat_decimal'][i]=int(df.Latitude[i]/100)+lat_min/60
+        #         df['Lon_decimal'][i]=int(df.Longitude[i]/100)+lon_min/60
         
         #----- compute time dependence of position
         
@@ -294,6 +327,7 @@ for site_index,site in enumerate(sites):
                 elev_count[cc]=counts[2,yy,mm]
                 thresh=0.8
                 if site=='JAR':thresh=0.15
+                if site=='SWC':thresh=0.15
                 if lat_count[cc]>744*thresh:
                     lat_mean[cc]=means[0,yy,mm]
                     kml = simplekml.Kml(open=1)
@@ -334,9 +368,9 @@ for site_index,site in enumerate(sites):
         df1d['lon'] = df1d['lon'].apply(lambda x: '%.6f' % x)
         df1d["lon count"]=pd.Series(lon_count)
         df1d["elev"]=pd.Series(elev_mean)
-        df1d['elev'] = df1d['elev'].apply(lambda x: '%.1f' % x)
+        df1d['elev'] = df1d['elev'].apply(lambda x: '%.2f' % x)
         df1d["elev std"]=pd.Series(elev_std)
-        df1d['elev std'] = df1d['elev std'].apply(lambda x: '%.1f' % x)
+        df1d['elev std'] = df1d['elev std'].apply(lambda x: '%.2f' % x)
         df1d["elev count"]=pd.Series(elev_count)
         ofile='./output/'+site+'_positions_monthly'
         df1d.to_csv(ofile+'.csv',index=None)
@@ -488,7 +522,7 @@ df2["delta time"]=pd.Series(years[:])
 df2["displacement rate, m/y"]=df2["displacement, m"]/df2["delta time"]
 df2["displacement rate, m/y"][df2['site name']=='KAN_B']=np.nan
 df2['displacement, m'] = df2['displacement, m'].map(lambda x: '%.0f' % x)
-df2['elevation change, m'] = df2['elevation change, m'].map(lambda x: '%.0f' % x)
+df2['elevation change, m'] = df2['elevation change, m'].map(lambda x: '%.1f' % x)
 df2['delta time'] = df2['delta time'].map(lambda x: '%.1f' % x)
 df2['first valid elevation, m'] = df2['first valid elevation, m'].map(lambda x: '%.0f' % x)
 df2['latest valid elevation, m'] = df2['latest valid elevation, m'].map(lambda x: '%.0f' % x)

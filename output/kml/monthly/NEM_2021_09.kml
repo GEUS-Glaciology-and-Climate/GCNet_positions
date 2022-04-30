@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
-    <Document id="1265">
-        <Style id="1268">
-            <IconStyle id="1270">
+    <Document id="745">
+        <Style id="748">
+            <IconStyle id="750">
                 <colorMode>normal</colorMode>
                 <scale>1</scale>
                 <heading>0</heading>
-                <Icon id="1271">
+                <Icon id="751">
                     <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
                 </Icon>
             </IconStyle>
-            <LabelStyle id="1269">
+            <LabelStyle id="749">
                 <color>ff0000ff</color>
                 <colorMode>normal</colorMode>
                 <scale>1.5</scale>
             </LabelStyle>
         </Style>
         <open>1</open>
-        <Placemark id="1267">
+        <Placemark id="747">
             <name>NEM_2021_09</name>
-            <styleUrl>#1268</styleUrl>
-            <Point id="1266">
+            <styleUrl>#748</styleUrl>
+            <Point id="746">
                 <coordinates>-51.08343729606481,77.44138142037038,0.0</coordinates>
                 <altitudeMode>relativeToGround</altitudeMode>
             </Point>
