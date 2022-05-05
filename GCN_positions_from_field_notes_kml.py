@@ -3,14 +3,20 @@
 """
 Created on Sat Apr 30 08:40:10 2022
 
+GCN_positions_from_field_notes_kml
+
 @author: jason
+
 """
 
 from pykml import parser
 from glob import glob
 
-base_dir = '/Users/jason/Dropbox/AWS/GCNET/ancillary/'
-files = sorted(glob(base_dir+'PET*.kml'))
+site='PET'
+site='DY2'
+
+base_dir = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/from_fieldbooks/'
+files = sorted(glob(base_dir+site+'*.kml'))
 
 print(files)
 
@@ -28,13 +34,13 @@ for file in files:
     lons.append(lon)
     lats.append(lat)
 
-    day=file.split(' ')[-3]
+    year=file.split(' ')[-3]
     month=file.split(' ')[-2]
-    year=file.split(' ')[-1].split('.')[0]
+    day=file.split(' ')[-1].split('.')[0]
     # print()
     print(file,year,month,day,lat,lon)
     years.append(int(year))
-    months.append('5')
+    months.append(month)
     days.append(day)
 
 import numpy as np
@@ -54,7 +60,8 @@ months=np.array(months)
 days=np.array(days)
 lats=np.array(lats)
 lons=np.array(lons)
-elevs=[902,915,924,944,907]
+if site=='PET': elevs=[902,915,924,944,907]
+if site=='DY2': elevs=[2251,2080,2046]
 
 nams=['year','month','day','lat','lon','elev']
 df = pd.DataFrame(columns = nams)
@@ -68,5 +75,5 @@ df["lon"]=pd.Series(lons[indices])
 df['lon'] = df['lon'].apply(lambda x: '%.5f' % x)
 df["elev"]=pd.Series(elevs)
 
-df.to_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/PET.csv',index=None)
+df.to_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/'+site+'.csv',index=None)
 

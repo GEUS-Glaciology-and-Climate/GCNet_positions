@@ -27,13 +27,13 @@ meta['elev_1999']=np.nan
 meta['elev_std_1999']=np.nan
 meta['date_1999']=np.nan
 
-inpath='/Users/jason/Dropbox/GCNet_info/GPS/'
+inpath='/Users/jason/Dropbox/AWS/GCNET/GCNet_info/GPS/'
 
 dirs = sorted(glob(inpath+'*_gps.dat'))
 
 # for idx in meta.id:
 
-ly='p'
+ly='x'
 
 for f in dirs:
     file=f.split('/')[-1]

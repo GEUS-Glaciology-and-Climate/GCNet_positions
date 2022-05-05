@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>PET Eric.kml</name>
+	<Style id="36">
+		<IconStyle id="38">
+			<heading>0</heading>
+			<Icon id="39">
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle id="37">
+			<color>ff0000ff</color>
+			<scale>1.5</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="360">
+		<IconStyle id="38">
+			<heading>0</heading>
+			<Icon id="39">
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle id="37">
+			<color>ff0000ff</color>
+			<scale>1.5</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="361">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#360</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#36</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark>
+		<name>PET Eric</name>
+		<description>79.809 N, 57.887 W at 1310</description>
+		<Camera>
+			<longitude>-55.40270125283206</longitude>
+			<latitude>79.96708676466963</latitude>
+			<altitude>183717.3192212934</altitude>
+			<heading>50.08334733651146</heading>
+			<tilt>0.0526827076490962</tilt>
+			<roll>65.72475330101229</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#361</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>-57.887,79.809,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

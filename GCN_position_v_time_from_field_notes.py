@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+run after /Users/jason/Dropbox/AWS/GCNET/GCNet_positions/PET_positions_from_kml.py
 
 @authors:
     Adrien Wehrlé, University of Zurich, Switzerland
@@ -17,7 +18,8 @@ from scipy import interpolate
 import matplotlib.pyplot as plt
 import pandas as pd
 
-
+site='PET'
+site='DY2'
 
 # -------------------------------- chdir
 if os.getlogin() == 'jason':
@@ -26,7 +28,7 @@ if os.getlogin() == 'jason':
 os.chdir(base_path)
 
 
-df=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/PET.csv')
+df=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/'+site+'.csv')
 
 def output_kml(site,datex,lat,lon):
     kml = simplekml.Kml(open=1)
@@ -58,11 +60,17 @@ def reproject_points(
 
 ## %% site coordinates
 
-lon_t0 = df.lon[df.year==2013].values[0]
-lat_t0 = df.lat[df.year==2013].values[0]
+if site=='PET':
+    iyear=2013;fyear=2018
 
-lon_t1 = df.lon[df.year==2018].values[0]
-lat_t1 = df.lat[df.year==2018].values[0]
+if site=='DY2':
+    iyear=2014;fyear=2018
+
+lon_t0 = df.lon[df.year==iyear].values[0]
+lat_t0 = df.lat[df.year==iyear].values[0]
+
+lon_t1 = df.lon[df.year==fyear].values[0]
+lat_t1 = df.lat[df.year==fyear].values[0]
 
 print('lat_t0, lon_t0',lat_t0, lon_t0)
 print('lat_t1, lon_t1',lat_t1, lon_t1)
@@ -75,7 +83,7 @@ SC_3413x_2021, SC_3413y_2021 = reproject_points(lon_t1, lat_t1)
 trajectory_x = [SC_3413x_1990, SC_3413x_2021]
 trajectory_y = [SC_3413y_1990, SC_3413y_2021]
 
-times = [2013.5, 2018.5]
+times = [iyear+0.5, fyear+0.5]
 x_ft = interpolate.interp1d(times, trajectory_x, kind="linear",fill_value="extrapolate")
 y_ft = interpolate.interp1d(times, trajectory_y, kind="linear",fill_value="extrapolate")
 
@@ -97,8 +105,7 @@ print('lat_tx, lon_tx',lat_tx, lon_tx)
 
 import simplekml
 
-site='PET'
 
-output_kml(site,target_date,lat_tx,lon_tx)
+output_kml(site,target_date+'_extrapolated_from_'+str(iyear)+'_to_'+str(fyear),lat_tx,lon_tx)
 
 
