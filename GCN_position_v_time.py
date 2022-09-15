@@ -68,7 +68,6 @@ def reproject_points(
     return x_coords, y_coords
 
 ## %% site coordinates
-
 lon_t0 = -49.295583 # 1990
 lat_t0 =  69.573694 # 1990
 

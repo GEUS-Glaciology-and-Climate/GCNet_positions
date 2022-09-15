@@ -20,6 +20,9 @@ meta=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/ancillary/GC-Net_info.csv')
 meta=meta.rename(columns={"name": "name_long"})
 meta=meta.rename(columns={"name_abv": "name"})
 print(meta.columns)
+print(meta)
+
+#%%
 
 meta['lat_1999']=np.nan
 meta['lon_1999']=np.nan
@@ -81,7 +84,8 @@ for f in dirs:
         if ly=='x':plt.show()
 
 #%%
-meta.to_csv('/Users/jason/Dropbox/AWS/GCNET/ancillary/GC-Net_info_incl_1999.csv')
+# meta.to_csv('/Users/jason/Dropbox/AWS/GCNET/ancillary/GC-Net_info_incl_1999.csv')
 
+meta.to_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/GC-Net_info_incl_1999.csv')
 
 
