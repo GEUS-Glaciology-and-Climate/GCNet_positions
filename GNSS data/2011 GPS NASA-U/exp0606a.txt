@@ -1,0 +1,13 @@
+Export Version 5.10  5.10 Started.
+Northing or Easting coordinate requested for a coordinate system that can't calculate these values. Null values will be used.
+Using Export Setup: Sample Configurable ASCII Setup
+The following files in C:\Data1\CLIMATE\Climate.11\NASA U\GPS will be exported:
+    R010112C.cor
+
+Reading file R010112C.cor
+File R010112C.cor read successfully
+
+1 input file(s) read.
+11650 position(s) read.
+  Of these, 38 position(s) were filtered out.
+There are no features to export

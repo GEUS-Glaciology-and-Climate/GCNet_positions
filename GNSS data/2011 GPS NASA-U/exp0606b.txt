@@ -1,0 +1,20 @@
+Export Version 5.10  5.10 Started.
+Using Export Setup: Sample Configurable ASCII Setup
+The following files in C:\Data1\CLIMATE\Climate.11\NASA U\GPS will be exported:
+    R010112C.cor
+
+Reading file R010112C.cor
+File R010112C.cor read successfully
+
+1 input file(s) read.
+11650 position(s) read.
+  Of these, 38 position(s) were filtered out.
+A total of 11612 feature(s) read or created.
+  11612 point feature(s) created from GNSS positions.
+11612 position(s) exported.
+1 output file(s) written to C:\Data1\CLIMATE\Climate.11\NASA U\GPS
+    c:\data1\climate\climate.11\nasa u\gps\r010112c.pos
+
+The file C:\Data1\CLIMATE\Climate.11\NASA U\GPS\R010112C.inf contains information on the settings used.
+
+The file C:\Program Files\Common Files\Trimble\PFOffice\Config\\expfiles.txt contains a list of the files created.
