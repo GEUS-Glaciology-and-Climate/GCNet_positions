@@ -6,11 +6,11 @@ id,name_long,name,date,Unnamed: 4,Unnamed: 5,Unnamed: 6,lat,Unnamed: 8,Unnamed: 
 1,Swiss Camp,SWC,1994-06-15,69.0,34.0,17.3,69.57147222,49.0,18.0,12.0,-49.30333333,,,,,2018 field book c.pdf
 1,Swiss Camp,SWC,1998-06-15,69.0,34.0,10.0,69.56944444,49.0,18.0,47.0,-49.31305556,,,,,2018 field book c.pdf
 1,Swiss Camp,SWC,2000-06-15,,,,69.56719881,,,,-49.32013815,,,,,Jason
-1,Swiss Camp,SWC,2005-06-15,69.0,33.0,53.0,69.56472222,49.0,19.0,57.0,-49.3325,,,,,2018 field book c.pdf
-1,Swiss Camp,SWC,2006-06-15,69.0,33.0,57.0,69.56583333,49.0,19.0,47.0,-49.32972222,,,,,2018 field book c.pdf
+1,Swiss Camp,SWC,2006-06-15,69.0,33.0,53.0,69.56472222,49.0,19.0,57.0,-49.3325,,,,,2018 field book c.pdf
+1,Swiss Camp,SWC,2005-06-15,69.0,33.0,57.0,69.56583333,49.0,19.0,47.0,-49.32972222,,,,,2018 field book c.pdf
 1,Swiss Camp,SWC,2008-06-15,69.0,33.0,47.0,69.56305556,49.0,20.0,17.0,-49.33805556,,,,,2018 field book c.pdf
 1,Swiss Camp,SWC,2009-06-15,69.0,33.0,46.0,69.56277778,49.0,20.0,34.0,-49.34277778,,,,,2018 field book c.pdf
-1,Swiss Camp,SWC,2010-06-15,69.0,33.0,48.0,69.56333333,49.0,20.0,34.0,-49.34277778,,,,,2018 field book c.pdf
+1,Swiss Camp,SWC,2010-06-15,69.0,33.0,43.0,69.56194444,49.0,20.0,34.0,-49.34277778,,,,,2018 field book c.pdf modified by bav after inspection
 1,Swiss Camp,SWC,2011-06-15,69.0,33.0,41.0,69.56138889,49.0,20.0,44.0,-49.34555556,,,,,2018 field book c.pdf
 1,Swiss Camp,SWC,2013-05-19,69.0,33.0,32.0,69.55888889,49.0,21.0,10.0,-49.35277778,1121,,,handheld,2013 field book c.pdf
 1,Swiss Camp,SWC,2015-05-08,69.0,33.0,27.0,69.5575,49.0,21.0,27.0,-49.3575,1082,,,handheld,2015 field book c.pdf
@@ -19,34 +19,30 @@ id,name_long,name,date,Unnamed: 4,Unnamed: 5,Unnamed: 6,lat,Unnamed: 8,Unnamed: 
 1,Swiss Camp,SWC,2017-05-07,69.0,33.0,27.0,69.5575,49.0,21.0,27.0,-49.3575,-,,,handheld,2017 field book c.pdf
 1,Swiss Camp,SWC,2018-05-07,69.0,33.0,20.0,69.55555556,49.0,21.0,53.0,-49.36472222,1135,,,handheld,2018 field book c.pdf
 1,Swiss Camp,SWC,2021-08-31,,,,69.5538,,,,-49.3707,,,,multi-day average GC-Netv2,Jason
-1,Swiss Camp,SWC,doc_2000,,,,69.56833,,,,-49.31582,1149,,,,"Gc-net documentation Nov, 10 2000"
-1,Swiss Camp,SWC,ref,,,,69.5732,,,,-49.2952,1149,,,,
-1,Swiss Camp,SWC,WMO-DMI_2012,69.0,33.0,53.0,69.56472222,49.0,19.0,51.0,-49.33083333,1092,,,unknown,WMO-DMI_2012
 2,Crawford Pt. 1,CP1,1999-05-25,,,,69.8797157275,,,,-46.986758491,1994,27.0,,,Jason
 2,Crawford Pt. 1,CP1,1999-06-15,,,,69.87975,,,,-46.98667,2022,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
 2,Crawford Pt. 1,CP1,2012-05-01,69.0,52.0,33.2,69.87588889,47.0,,53.1,-47.01475,-,,,handheld,2011-2012 Nicolas Bayou.pdf
 2,Crawford Pt. 1,CP1,2013-05-20,69.0,52.0,31.7,69.87547222,47.0,1.0,1.9,-47.01719444,-,,,handheld,2013 field book c.pdf
 2,Crawford Pt. 1,CP1,2014-05-02,69.0,52.0,30.2,69.87505556,47.0,1.0,9.8,-47.01938889,1943,,,handheld,2014 field book c.pdf
 2,Crawford Pt. 1,CP1,2015-05-25,69.0,52.0,28.5,69.87458333,47.0,1.0,21.0,-47.0225,1931,,,handheld,2015 field book c.pdf
-2,Crawford Pt. 1,CP1,2016-05-05,69.0,53.0,27.7,69.89102778,47.0,1.0,27.9,-47.02441667,1145,,,handheld,2016 field book c.pdf
+2,Crawford Pt. 1,CP1,2016-05-05,69.0,52.0,27.9,69.87441667,47.0,1.0,21.7,-47.02269444,1945,,,handheld,2016 field book c.pdf
 2,Crawford Pt. 1,CP1,2017-05-19,69.0,52.0,27.0,69.87416667,47.0,1.0,27.0,-47.02416667,-,,,handheld,2017 field book c.pdf
-2,Crawford Pt. 1,CP1,ref,,,,69.8819,,,,-46.9736,2022,,,,
+2,Crawford Pt. 1,CP1,ref,,,,69.8819,,,,-46.9736,2022,,,,GC-Net_info_incl_1999.csv
 2,Crawford Pt. 1,CP1,WMO-DMI_2012,69.0,52.0,42.0,69.87833333,46.0,59.0,48.0,-46.99666667,2022,,,unknown,WMO-DMI_2012
 3,NASA-U,NAU,1999-05-13,,,,73.841888993,,,,-49.498250747,2382,96.0,,,Jason
 3,NASA-U,NAU,1999-06-15,,,,73.84189,,,,-49.49831,2369,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
+3,NASA-U,NAU,2011-05-30,73.0,50.0,27.86361,73.84107323,49.0,30.0,56.53626888,-49.51570452,2307.723,0.4,,average of 11612 measurements,https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/tree/main/data/GNSS%20data/2011%20GPS%20NASA-U
 3,NASA-U,NAU,2013-05-25,73.0,50.0,27.3,73.84091667,49.0,31.0,9.2,-49.51922222,2460,,,handheld,2013 field book c.pdf
 3,NASA-U,NAU,2014-05-23,73.0,50.0,27.1,73.84086111,49.0,31.0,14.2,-49.52061111,2461,,,handheld,2014 field book c.pdf
-3,NASA-U,NAU,2015-05-08,73.0,50.0,26.5,73.84069444,49.0,31.0,19.9,-49.52219444,2420,,,handheld,2015 field book c.pdf
+3,NASA-U,NAU,#2015-05-08,73.0,50.0,26.5,73.84069444,49.0,31.0,19.9,-49.52219444,2420,,,handheld,2015 field book c.pdf
 3,NASA-U,NAU,2016-05-24,73.0,50.0,27.0,73.84083333,49.0,31.0,23.5,-49.52319444,2333,,,handheld,2016 field book c.pdf
 3,NASA-U,NAU,2018-05-23,73.0,50.0,26.6,73.84072222,49.0,31.0,35.5,-49.52652778,-,,,handheld,2018 field book c.pdf
-3,NASA-U,NAU,ref,,,,73.8333,,,,-49.4953,2368,,,,
 3,NASA-U,NAU,WMO-DMI_2012,73.0,50.0,29.0,73.84138889,49.0,30.0,25.0,-49.50694444,2334,,,unknown,WMO-DMI_2012
 4,GITS,GIT,1999-04-30,,,,77.137820952,,,,-61.0410620505,1889,54.0,,,
 4,GITS,GIT,1999-06-15,,,,77.13781,,,,-61.04113,1887,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
 4,GITS,GIT,2013-05-28,77.0,8.0,13.4,77.13705556,61.0,2.0,29.4,-61.0415,1990,,,handheld,2013 field book c.pdf
-4,GITS,GIT,2014-05-21,77.0,8.0,13.3,77.13702778,61.0,3.0,30.4,-61.05844444,2004,,,handheld,2014 field book c.pdf
-4,GITS,GIT,2015-05-21,77.0,8.0,13.6,77.13711111,61.0,2.0,31.6,-61.04211111,1881,,,handheld,2015 field book c.pdf
-4,GITS,GIT,ref,,,,77.1433,,,,-61.095,1925,,,,
+4,GITS,GIT,#2014-05-21,77.0,8.0,13.3,77.13702778,61.0,3.0,30.4,-61.05844444,2004,,,handheld,2014 field book c.pdf
+4,GITS,GIT,#2015-05-21,77.0,8.0,13.6,77.13711111,61.0,2.0,31.6,-61.04211111,1881,,,handheld,2015 field book c.pdf
 4,GITS,GIT,WMO-DMI_2012,77.0,8.0,16.0,77.13777778,61.0,2.0,24.0,-61.04,1869,,,unknown,WMO-DMI_2012
 5,Humboldt,HUM,1995-06-15,,,,78.5266,,,,-56.8305,1995,,,,"Gc-net documentation Nov, 10 2000"
 5,Humboldt,HUM,2013-05-26,78.0,31.0,40.0,78.52777778,56.0,50.0,26.0,-56.84055556,1962,,,handheld,2013 field book c.pdf
@@ -54,8 +50,6 @@ id,name_long,name,date,Unnamed: 4,Unnamed: 5,Unnamed: 6,lat,Unnamed: 8,Unnamed: 
 5,Humboldt,HUM,2015-05-20,78.0,31.0,40.2,78.52783333,56.0,50.0,29.1,-56.84141667,2123,,,handheld,2015 field book c.pdf
 5,Humboldt,HUM,2016-05-27,78.0,31.0,40.7,78.52797222,56.0,50.0,29.5,-56.84152778,1989,,,handheld,2016 field book c.pdf
 5,Humboldt,HUM,2018-05-24,78.0,31.0,42.0,78.52833333,56.0,50.0,32.4,-56.84233333,1950,,,handheld,2018 field book c.pdf
-5,Humboldt,HUM,ref,,,,78.5266,,,,-56.8305,1995,,,,
-5,Humboldt,HUM,WMO-DMI_2012,78.0,31.0,36.0,78.52666667,56.0,49.0,50.0,-56.83055556,1992.6,,,unknown,WMO-DMI_2012
 6,Summit,SUM,1999-05-09,,,,72.57975117,,,,-38.504471984,3256,40.0,,,Jason
 6,Summit,SUM,1999-06-15,,,,72.57972,,,,-38.50454,3254,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
 6,Summit,SUM,2013-05-29,72.0,34.0,46.6,72.57961111,38.0,30.0,20.8,-38.50577778,3215,,,handheld,2013 field book c.pdf
@@ -69,9 +63,9 @@ id,name_long,name,date,Unnamed: 4,Unnamed: 5,Unnamed: 6,lat,Unnamed: 8,Unnamed: 
 7,Tunu-N,TUN,WMO-DMI_2012,78.0,0.0,59.0,78.01638889,33.0,59.0,0.0,-33.98333333,2009,,,unknown,WMO-DMI_2012
 8,DYE-2,DY2,1996-04-25,,,,66.48,,,,-46.27888,2165,,,,from Steffen and Box 2001
 8,DYE-2,DY2,1999-06-15,,,,66.48001,,,,-46.27889,2165,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
-8,DYE-2,DY2,2013-05-22,66.0,28.0,54.0,66.48166667,46.0,17.0,18.0,-46.28833333,2111,,,handheld,2013 field book c.pdf
+8,DYE-2,DY2,#2013-05-22,66.0,28.0,54.0,66.48166667,46.0,17.0,18.0,-46.28833333,2111,,,handheld,2013 field book c.pdf
 8,DYE-2,DY2,2014-05-25,,,,66.48122222,,,,-46.28833333,2251,,,,Jason
-8,DYE-2,DY2,2014-05-25,66.0,28.0,54.4,66.48177778,46.0,17.0,18.0,-46.28833333,2251,,,handheld,2014 field book c.pdf
+8,DYE-2,DY2,#2014-05-25,66.0,28.0,54.4,66.48177778,46.0,17.0,18.0,-46.28833333,2251,,,handheld,2014 field book c.pdf
 8,DYE-2,DY2,2015-05-26,,,,66.48155556,,,,-46.28966667,2080,,,,Jason
 8,DYE-2,DY2,2015-05-26,66.0,28.0,53.6,66.48155556,46.0,17.0,22.8,-46.28966667,2080,,,handheld,2015 field book c.pdf
 8,DYE-2,DY2,2018-05-20,,,,66.48197222,,,,-46.29069444,2046,,,,Jason
@@ -82,20 +76,17 @@ id,name_long,name,date,Unnamed: 4,Unnamed: 5,Unnamed: 6,lat,Unnamed: 8,Unnamed: 
 9,JAR1,JR1,2005-05-07,69.0,29.0,47.0,69.49638889,49.0,41.0,39.0,-49.69416667,929,,,handheld,2005 Jason Box.pdf
 9,JAR1,JR1,2005-05-08,69.0,29.0,47.0,69.49638889,49.0,41.0,40.0,-49.69444444,,,,handheld,2005 Jason Box.pdf
 9,JAR1,JR1,2012-05-09,69.0,29.0,40.7,69.49463889,49.0,42.0,22.6,-49.70627778,,,,handheld,2011-2012 Nicolas Bayou.pdf
-9,JAR1,JR1,2013-05-19,69.0,29.0,40.0,69.49444444,49.0,33.0,12.0,-49.55333333,1016,,,handheld,2013 field book c.pdf
+9,JAR1,JR1,2013-05-19,69.0,29.0,40.0,69.49444444,49.0,42.0,26.0,-49.70722222,907,,,handheld,2013 field book c.pdf
 9,JAR1,JR1,2015-05-06,69.0,29.0,38.0,69.49388889,49.0,42.0,35.0,-49.70972222,897,,,handheld,2015 field book c.pdf
 9,JAR1,JR1,2016-05-06,69.0,29.0,37.0,69.49361111,49.0,42.0,41.0,-49.71138889,893,,,handheld,2016 field book c.pdf
 9,JAR1,JR1,2017-05-07,69.0,29.0,37.0,69.49361111,49.0,42.0,46.0,-49.71277778,903,,,handheld,2017 field book c.pdf
 9,JAR1,JR1,2018-05-03,69.0,29.0,36.0,69.49333333,49.0,42.0,51.0,-49.71416667,900,,,handheld,2018 field book c.pdf
-9,JAR1,JR1,ref,,,,69.4984,,,,-49.6816,962,,,,
-9,JAR1,JR1,WMO-DMI_2012,69.0,29.0,47.0,69.49638889,49.0,41.0,39.0,-49.69416667,904,,,unknown,WMO-DMI_2012
 10,Saddle,SDL,1999-06-15,,,,65.99947,,,,-44.50016,2559,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
 10,Saddle,SDL,2013-05-22,65.0,59.0,58.9,65.99969444,44.0,30.0,7.6,-44.50211111,2498,,,handheld,2013 field book c.pdf
 10,Saddle,SDL,2014-05-25,66.0,0.0,0.1,66.00002778,44.0,30.0,5.1,-44.50141667,2480,,,handheld,2014 field book c.pdf
 10,Saddle,SDL,2015-05-25,65.0,59.0,58.6,65.99961111,44.0,30.0,6.1,-44.50169444,2435,,,handheld,2015 field book c.pdf
 10,Saddle,SDL,2016-05-20,65.0,59.0,59.6,65.99988889,44.0,30.0,9.2,-44.50255556,2451,,,handheld,2016 field book c.pdf
 10,Saddle,SDL,2018-05-29,65.0,59.0,59.1,65.99975,44.0,30.0,10.1,-44.50280556,2447,,,handheld,2018 field book c.pdf
-10,Saddle,SDL,doc_2000,,,,66.0006,,,,-44.5014,2460,,,,
 10,Saddle,SDL,WMO-DMI_2012,65.0,59.0,58.0,65.99944444,44.0,30.0,3.0,-44.50083333,2466.3,,,unknown,WMO-DMI_2012
 11,South Dome,SDM,1999-04-23,,,,63.1489,,,,-44.81718,2934,51.0,,,Jason
 11,South Dome,SDM,1999-06-15,,,,63.14889,,,,-44.81717,2922,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
@@ -103,10 +94,10 @@ id,name_long,name,date,Unnamed: 4,Unnamed: 5,Unnamed: 6,lat,Unnamed: 8,Unnamed: 
 11,South Dome,SDM,2014-05-24,63.0,8.0,56.6,63.14905556,44.0,49.0,0.4,-44.81677778,3070,,,handheld,2014 field book c.pdf
 11,South Dome,SDM,2015-05-26,63.0,8.0,56.6,63.14905556,44.0,49.0,0.9,-44.81691667,2901,,,handheld,2015 field book c.pdf
 11,South Dome,SDM,2016-05-19,63.0,8.939,0.0,63.14898333,44.0,49.0,0.3,-44.81675,-,,,handheld,2016 field book c.pdf
-11,South Dome,SDM,2018-05-20,63.0,8.0,56.0,63.14888889,44.0,48.0,3.0,-44.80083333,2878,,,handheld,2018 field book c.pdf
+11,South Dome,SDM,2018-05-20,63.0,8.0,56.0,63.14888889,44.0,49.0,3.0,-44.8175,2878,,,handheld,2018 field book c.pdf
 11,South Dome,SDM,ref,,,,63.1489,,,,-44.8167,2850,,,,
 11,South Dome,SDM,WMO-DMI_2012,63.0,8.0,56.0,63.14888889,44.0,49.0,2.0,-44.81722222,2901,,,unknown,WMO-DMI_2012
-12,NASA-E,NAE,2013-05-29,75.0,0.0,5.2,75.00144444,29.0,59.0,13.0,-29.98694444,2660,,,handheld,2013 field book c.pdf
+12,NASA-E,NAE,#2013-05-29,75.0,0.0,5.2,75.00144444,29.0,59.0,13.0,-29.98694444,2660,,,handheld,2013 field book c.pdf
 12,NASA-E,NAE,2014-05-17,75.0,0.0,5.9,75.00163889,29.0,59.0,13.3,-29.98702778,2642,,,handheld,2014 field book c.pdf
 12,NASA-E,NAE,2016-05-23,75.0,0.118,0.0,75.00196667,29.0,59.126,0.0,-29.98543333,-,,,handheld,2016 field book c.pdf
 12,NASA-E,NAE,2018-05-23,75.0,0.0,8.2,75.00227778,29.0,59.0,1.8,-29.98383333,2610,,,handheld,2018 field book c.pdf
@@ -123,12 +114,11 @@ id,name_long,name,date,Unnamed: 4,Unnamed: 5,Unnamed: 6,lat,Unnamed: 8,Unnamed: 
 15,NASA-SE,NSE,1999-04-17,,,,66.47977468,,,,-42.500371733,2410,134.0,,,Jason
 15,NASA-SE,NSE,1999-06-15,,,,66.4797,,,,-42.5002,2425,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
 15,NASA-SE,NSE,2013-05-22,66.0,28.0,42.3,66.47841667,42.0,29.0,46.0,-42.49611111,2383,,,,2013 field book c.pdf
-15,NASA-SE,NSE,2014-05-25,66.0,28.0,41.7,66.47825,42.0,29.0,47.0,-42.49638889,2389,,,handheld,2014 field book c.pdf
-15,NASA-SE,NSE,2015-05-25,66.0,28.0,41.1,66.47808333,42.0,29.0,46.1,-42.49613889,2388,,,handheld,2015 field book c.pdf
+15,NASA-SE,NSE,#2014-05-25,66.0,28.0,41.7,66.47825,42.0,29.0,47.0,-42.49638889,2389,,,handheld,2014 field book c.pdf
+15,NASA-SE,NSE,#2015-05-25,66.0,28.0,41.1,66.47808333,42.0,29.0,46.1,-42.49613889,2388,,,handheld,2015 field book c.pdf
 15,NASA-SE,NSE,2016-05-20,66.0,28.0,41.6,66.47822222,42.0,29.0,43.5,-42.49541667,2382,,,handheld,2016 field book c.pdf
 15,NASA-SE,NSE,2018-05-29,66.0,28.0,40.6,66.47794444,42.0,29.0,42.2,-42.49505556,2360,,,handheld,2018 field book c.pdf
 15,NASA-SE,NSE,ref,,,,66.4794,,,,-42.5003,2360,,,,
-15,NASA-SE,NSE,WMO-DMI_2012,66.0,28.0,30.0,66.475,42.0,29.0,55.0,-42.49861111,2405.7,,,unknown,WMO-DMI_2012
 16,KAR,KAR,1999-05-17,,,,69.699483688,,,,-33.000102125,2511,33.0,,,Jason
 16,KAR,KAR,1999-06-15,,,,69.69942,,,,-33.00058,2579,,,Trimble Geo Explorer II hand held GPS,"Gc-net documentation Nov, 10 2000"
 16,KAR,KAR,ref,,,,69.699444,,,,-33.005833,2579,,,,
