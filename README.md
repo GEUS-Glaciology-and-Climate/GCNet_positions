@@ -14,6 +14,10 @@ In the plots below, the markers labeled "ref" "WMO" "doc..." or "#..." are not u
 ![](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/figs/TUN.png)
 ![](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/figs/DY2.png)
 ![](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/figs/JR1.png)
+
+Including daily position from 2009-05-10 to 2009-10-31:
+![image](https://user-images.githubusercontent.com/35140661/203256827-e1d803f2-da46-42ef-8d8f-f28808a9a07f.png)
+
 ![](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/figs/NAE.png)
 ![](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/figs/NSE.png)
 ![](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/figs/PET.png)
