@@ -1,0 +1,378 @@
+version: teqc  2019Feb25
+
+ SV+------------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------+ SV
+  7|ooo--__                                   ___--ooooooooooooooooooo-___                                                ___--ooooooooooooooooooooo|  7
+  6|oooo--__                                               ___--ooooooooooooo--___                                      __--oooooooooooooooooooooooo|  6
+  3|ooooooo-___                                              ___--ooooooooooo--____                                        __--ooooooooooooooooooooo|  3
+ 15|oooooo--___                                        ___-ooooooooooooooooooooooooooooo-___                                            ____--oooooo| 15
+ 18|ooooooo--___                                               __--ooooooooooooooooooooooooooo--__                                     ___--oooooooo| 18
+  8|ooooooooo--__                                   ___-oooooooooooooooooooooo-___                                                ___--ooooooooooooo|  8
+ 19|ooooooooooooo--__                                             ___--oooooooooooo--___                                        ___-oooooooooooooooo| 19
+ 22|ooooooooooooo--___                                                __--oooooooooooooooooooooooooo-___                                   ___--oooo| 22
+ 26|_--oooooooooooo--___                                           ___-oooooooooooooooooooooooooooo--___                                          __| 26
+ 28|ooooooooooooooooooooooo-___                                   ___--ooooooooooooooooo--___                                               __--oooo| 28
+ 11|oooooooooooooooooooooooooo--___                                              ____--oooooooooo--____                                       ___--o| 11
+ 27| ___--oooooooooooooooo--__                                     __--ooooooooooooooooooooooooooo--__                                              | 27
+ 17|   ___-oooooooooooooooooooooooooooo--__                                       ___--ooooooooooooo--___                                           | 17
+  9|     ___--oooooooooooooo--__                                       __--oooooooooooooooooooooooooo--__                                           |  9
+ 32|      __--ooooooooooooooooooooooo--__                                                 __--ooooooooooooooooooooo-___                             | 32
+ 14|       ___--oooooooooooooo-___                                              __--oooooooooooooooooooooooooooo--__                                | 14
+ 20|         ___-ooooooooooooooooooooooooo-___                                                 __--ooooooooooooooooo--___                           | 20
+  4|                 __--ooooooooooooooooooooooooooooo-___                                         ____--oooooooooo--____                           |  4
+ 12|                  __--ooooooooooooooooooo-___                                   ___-ooooooooooooooooooooooooo-___                               | 12
+ 23|                       ___-ooooooooooooooooooooo--__                                                 ___-Loooooooooooooooooooooo-___            | 23
+  2|                        __--oooooooooooooooooooooooooooo--__                                        ___--oooooooooooo--___                      |  2
+ 30|                        __--oooooooooooooooo--__                                     ___-oooooooooooooooooooooooooo--__                         | 30
+ 31|                        ___--oooooooooooo--___                                            __--ooooooooooooooooooooooooooooo--__                 | 31
+ 13|                             __--ooooooooooooooooooooooo-___                                                 __--oooooooooooooooooooo--__       | 13
+ 29|                                   ___--oooooooooooooooooooo--___                                  ___--oooooooooooooooooooooo--__              | 29
+ 10|                                    ___-Loooooooooooooooooooooooooooo--__                                           ___--ooooooooooo--___       | 10
+ 24|                                        ___--ooooooooooooooooooooooooo--___                                    __--ooooooooooooooooo--__        | 24
+ 16|                                          ___--oooooooooooo--___                                         __--ooooooooooooooooooooooooooooo--__  | 16
+ 21|                                                 __--oooooooooooooooooooooooo-___                                  ___--ooooooooooooooooooo--___| 21
+ 25|                                                                                                                                         Loooooo| 25
+-dn|    1  11 1               21           1    1              1         11                       1  1 1    1   1                        11         |-dn
++dn| 1112222222112211  1111111441  111111 22 211122 1112111 2112221  34 1221 23  111122121  2111122122111 112  111 32111 1221221  12111 22211132111 |+dn
++10|abbbcbbbaababbb99889aaaa88aa999aaaa998999988899999899aaaa99999999cdcdeedccc999999aabba99bbbbbccba8777789aaabbb9a988877899bbbaaabaaaaa99899baaaaa|+10
+Pos| ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo|Pos
+Clk|                                                                                                                                                |Clk
+   +------------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------+   
+00:00:00.000                                                                                                                                23:59:30.000
+2009 Jul  1                                                                                                                                  2009 Jul  1
+
+*********************
+QC of RINEX  file(s) : 04711820_/04711820_1820.09o
+input RnxNAV file(s) : 04711820_/04711820_1820.09n
+*********************
+
+4-character ID          : 0471 (name = 04711820) (# = 1820)
+Receiver type           : TRIMBLE R7 (# = 0220400471) (fw = 2.30)
+Antenna type            : TRM39105.00     NONE
+
+Time of start of window : 2009 Jul  1  00:00:00.000
+Time of  end  of window : 2009 Jul  1  23:59:30.000
+Time line window length : 23.99 hour(s), ticked every 3.0 hour(s)
+ mean antenna; # of pos :    175
+  antenna WGS 84 (xyz)  : 1449473.2971 -1709227.8175 5952459.6001 (m)
+  antenna WGS 84 (geo)  : N  69 deg 29' 43.44"  W  49 deg 42'  4.02"
+  antenna WGS 84 (geo)  :   69.495401 deg   310.298883 deg (=  -49.701117 deg)
+          WGS 84 height : 966.6847 m
+|qc - header| position  :  13.7474 m
+qc position offsets     :  13.7376 m vertical   0.5205 m horizontal
+Observation interval    : 30.0000 seconds
+Total satellites w/ obs : 30
+NAVSTAR GPS SVs w/o OBS :  1   5 
+NAVSTAR GPS SVs w/o NAV : 25 
+Rx tracking capability  : 28 SVs
+Poss. # of obs epochs   :   2880
+Epochs w/ observations  :   2880
+Epochs repeated         :      0  (0.00%)
+Possible obs >   0.0 deg:  33416
+Possible obs >  10.0 deg:  27227
+Complete obs >  10.0 deg:  25275
+ Deleted obs >  10.0 deg:      0
+  Masked obs <  10.0 deg:   1952
+Obs w/ SV duplication   :      0  (within non-repeated epochs)
+Moving average MP12     : 0.242336 m
+Moving average MP21     : 0.262619 m
+Points in MP moving avg : 50
+Mean S1                 : 46.44 (sd=3.50 n=25388)
+Mean S2                 : 31.84 (sd=6.20 n=25388)
+No. of Rx clock offsets : 0
+Total Rx clock drift    :  0.000000 ms
+Rate of Rx clock drift  :  0.000 ms/hr
+Avg time between resets : Inf minute(s)
+Freq no. and timecode   : 2 10769 ffffff
+Report gap > than       : 10.00 minute(s)
+epochs w/ msec clk slip : 0
+other msec mp events    : 0 (: 0)   {expect ~= 1:50}
+IOD signifying a slip   : >400.0 cm/minute
+IOD slips <  10.0 deg*  :      0
+IOD slips >  10.0 deg   :      0
+IOD or MP slips <  10.0*:      0
+IOD or MP slips >  10.0 :      0
+ * or unknown elevation
+      first epoch    last epoch    sn1   sn2 
+SSN 09  7  1 00:00 09  7  1 23:59 46.44 31.84
+      first epoch    last epoch    hrs   dt  #expt  #have   %   mp1   mp2 o/slps
+SUM 09  7  1 00:00 09  7  1 23:59 24.00  30  27227  25275  93  0.24  0.26  25275
+
+
+
+Processing parameters are:
+Receiver tracking capability       : 28 SVs
+Maximum ionospheric rate (L1)      : 400.00 cm/min
+Report data gap greater than       : 10.00 min
+Expected rms of MP12 multipath     : 65.00 cm
+Expected rms of MP21 multipath     : 65.00 cm
+Multipath slip sigma threshold     : 4.00 sigma
+% increase in MP rms for C/A | A/S : 100.00 %
+Points in MP moving averages       : 50
+Minimum signal to noise for L1     : 4
+Minimum signal to noise for L2     : 4
+Elevation mask (cutoff)            : 10.00 degrees
+Elevation comparison threshold     : 25.00 degrees
+SVs w/ code data for position try  : 6
+Width of ASCII summary plot        : 144
+Data indicators on summary plot    : yes
+Do ionospheric observable          : yes
+Do ionospheric derivative          : yes
+Do multipath observables           : yes
+Do 1-ms receiver clock slips       : yes
+Tolerance for 1-ms clock slips     : 1.00e-02 ms
+Do receiver LLI slips              : yes
+Do plot file(s)                    : no
+
+Observations start   : 2009 Jul  1 00:00:00.000
+Observations  end    : 2009 Jul  1 23:59:30.000
+Observation interval : 30.0000 second(s)
+
+ SV  #+hor <ele> #+mask <ele> #reprt #compl    L1     L2     P1     P2     C1     C2
+--- ------ ----- ------ ----- ------ ------ ------ ------ ------ ------ ------ ------
+G22   1168 26.46    957 31.19    892    892    892    892      0    892    892      0
+G18   1166 27.35    950 32.42    882    882    882    882      0    882    882      0
+G15   1150 29.02    927 34.78    858    858    858    858      0    858    858      0
+G19   1153 29.29    931 35.07    862    862    862    862      0    862    862      0
+G06   1156 27.82    934 33.23    863    863    863    863      0    863    863      0
+G08   1170 27.36    973 31.89    914    914    914    914      0    914    914      0
+G11   1119 26.52    880 32.34    802    802    802    802      0    802    802      0
+G28   1187 27.59    979 32.39    917    917    917    917      0    917    917      0
+G03   1123 27.92    896 33.71    824    824    824    824      0    824    824      0
+G07   1167 26.83    964 31.43    904    904    904    904      0    904    904      0
+G26   1126 30.00    905 36.09    838    838    838    838      0    838    838      0
+G27   1191 28.49    982 33.48    916    916    916    916      0    916    916      0
+G17   1148 28.73    930 34.28    861    861    861    861      0    861    861      0
+G09   1115 28.40    909 33.70    837    837    837    837      0    837    837      0
+G32   1183 26.53    978 31.05    916    916    916    916      0    916    916      0
+G14   1157 29.60    947 35.04    881    881    881    881      0    881    881      0
+G20   1147 26.20    938 30.92    875    875    875    875      0    875    875      0
+G04   1125 28.95    897 35.02    820    820    820    820      0    820    820      0
+G12   1163 26.94    960 31.59    897    897    897    897      0    897    897      0
+G23   1159 26.61    959 31.12    898    898    898    898      0    898    898      0
+G02   1131 28.40    908 34.14    835    835    835    835      0    835    835      0
+G30   1132 27.05    922 32.07    858    858    858    858      0    858    858      0
+G31   1155 29.93    936 35.75    864    864    864    864      0    864    864      0
+G13   1158 27.44    962 32.01    902    902    902    902      0    902    902      0
+G29   1166 26.32    963 30.81    902    902    902    902      0    902    902      0
+G10   1128 29.48    905 35.50    832    832    832    832      0    832    832      0
+G24   1160 27.02    950 31.89    876    876    876    876      0    876    876      0
+G16   1145 29.77    925 35.66    853    853    853    853      0    853    853      0
+G21   1168 25.66    960 30.13    896    896    896    896      0    896    896      0
+G25*     0  0.00      0  0.00    113    113    113    113      0    113    113      0
+   * = SV with no NAV info (or not being used)
+
+Obs below mask ( 10.00 deg)   :    113
+Obs reported w/ code | phase  :  25388
+Obs deleted (any reason)      :      0
+Obs complete                  :  25388
+
+                                |  G  |
+% Obs above mask w/ no L1     :   0.0
+% Obs above mask w/ no L2     :   0.0
+
+% Obs above mask w/ no P2     :   0.0
+% Obs above mask w/ no C1     :   0.0
+
+% Obs above mask w/ low L1 S/N:   0.0
+% Obs above mask w/ low L2 S/N:  11.9
+
+No. of Rx clock offsets : 0
+Total Rx clock drift    :  0.000000 ms
+Rate of Rx clock drift  :  0.000000 ms/hr
+
+elev (deg)  tot slps <ION rms, m>        5=%       1|m      15=%       2|m
+ 85 - 90      0    0   0.000000  
+ 80 - 85      0    0   0.000000  
+ 75 - 80      0    0   0.000000  
+ 70 - 75    235    0   0.000000  
+ 65 - 70    863    0   0.000000  
+ 60 - 65   1099    0   0.000000  
+ 55 - 60   1268    0   0.000000  
+ 50 - 55   1423    0   0.000000  
+ 45 - 50   1855    0   0.000000  
+ 40 - 45   2041    0   0.000000  
+ 35 - 40   2140    0   0.000000  
+ 30 - 35   2386    0   0.000000  
+ 25 - 30   2977    0   0.000000  
+ 20 - 25   3982    0   0.000000  
+ 15 - 20   3702    0   0.000000  
+ 10 - 15   1275    0   0.000000  
+  5 - 10      0    0   0.000000  
+  0 -  5      0    0   0.000000  
+    <  0      0    0   0.000000  
+
+MP12 RMS summary (per SV):
+                                      slips  L1 rx  L2 rx  slips  L1 rx  L2 rx
+ SV  obs>10  # del <elev> MP12 rms [m]  < 25   < 25   < 25   > 25   > 25   > 25
+G22    892      0   32.70  0.222548      0      2      2      0      0      0
+G18    882      0   34.11  0.255999      0      2      2      0      0      0
+G15    858      0   36.73  0.234754      0      2      2      0      0      0
+G19    862      0   36.98  0.239267      0      2      2      0      0      0
+G06    863      0   35.08  0.254205      0      2      2      0      0      0
+G08    914      0   33.26  0.228959      0      2      2      0      0      0
+G11    802      0   34.45  0.241847      0      2      2      0      0      0
+G28    917      0   33.87  0.278997      0      2      2      0      0      0
+G03    824      0   35.70  0.246235      0      2      2      0      0      0
+G07    904      0   32.82  0.225715      0      2      2      0      0      0
+G26    838      0   38.15  0.278846      0      2      2      0      0      0
+G27    916      0   35.15  0.250949      0      2      2      0      0      0
+G17    861      0   36.19  0.231768      0      2      2      0      0      0
+G09    837      0   35.68  0.262461      0      2      2      0      0      0
+G32    916      0   32.46  0.234105      0      2      2      0      0      0
+G14    881      0   36.88  0.255106      0      2      2      0      0      0
+G20    875      0   32.40  0.231874      0      2      2      0      0      0
+G04    820      0   37.32  0.236955      0      2      2      0      0      0
+G12    897      0   33.08  0.219772      0      2      2      0      0      0
+G23    898      0   32.53  0.225264      0      2      2      0      0      0
+G02    835      0   36.20  0.227583      0      2      2      0      0      0
+G30    858      0   33.69  0.234533      0      2      2      0      0      0
+G31    864      0   37.86  0.230414      0      2      2      0      0      0
+G13    902      0   33.46  0.220165      0      2      2      0      0      0
+G29    902      0   32.20  0.225781      0      2      2      0      0      0
+G10    832      0   37.69  0.273463      0      2      2      0      0      0
+G24    876      0   33.68  0.267811      0      2      2      0      0      0
+G16    853      0   37.78  0.251246      0      2      2      0      0      0
+G21    896      0   31.54  0.246634      0      2      2      0      0      0
+G25*   113      0    0.00  0.234490      0      1      1      0      0      0
+   * = SV with no NAV info (or not being used)
+
+mean MP12 rms        :  0.242337 m
+total mean elevation : 34.77 degrees
+# MP12 obs > 10      :  25388
+# qc MP12 slips < 25 :      0
+# Rvr L1 slips < 25  :     59
+# Rvr L2 slips < 25  :     59
+# qc MP12 slips > 25 :      0
+# Rvr L1 slips > 25  :      0
+# Rvr L2 slips > 25  :      0
+
+elev (deg)  tot slps <MP12 rms, m>        5=%       1|m      15=%       2|m
+ 85 - 90      0    0   0.000000  
+ 80 - 85      0    0   0.000000  
+ 75 - 80      0    0   0.000000  
+ 70 - 75    235    0   0.152074  |||
+ 65 - 70    863    0   0.157227  |||
+ 60 - 65   1099    0   0.159200  |||
+ 55 - 60   1268    0   0.154383  |||
+ 50 - 55   1423    0   0.166681  |||
+ 45 - 50   1855    0   0.168604  |||
+ 40 - 45   2041    0   0.183236  ||||
+ 35 - 40   2140    0   0.191284  ||||
+ 30 - 35   2386    0   0.211977  ||||
+ 25 - 30   2977    0   0.239515  |||||
+ 20 - 25   3982    0   0.274366  |||||
+ 15 - 20   3702    0   0.332192  |||||||
+ 10 - 15   1275    0   0.377557  ||||||||
+  5 - 10      0    0   0.000000  
+  0 -  5      0    0   0.000000  
+    <  0      0    0   0.000000  
+
+MP21 RMS summary (per SV):
+                                      slips  L1 rx  L2 rx  slips  L1 rx  L2 rx
+ SV  obs>10  # del <elev> MP21 rms [m]  < 25   < 25   < 25   > 25   > 25   > 25
+G22    892      0   32.70  0.260545      0      2      2      0      0      0
+G18    882      0   34.11  0.272177      0      2      2      0      0      0
+G15    858      0   36.73  0.261254      0      2      2      0      0      0
+G19    862      0   36.98  0.276930      0      2      2      0      0      0
+G06    863      0   35.08  0.299626      0      2      2      0      0      0
+G08    914      0   33.26  0.296232      0      2      2      0      0      0
+G11    802      0   34.45  0.243255      0      2      2      0      0      0
+G28    917      0   33.87  0.264052      0      2      2      0      0      0
+G03    824      0   35.70  0.272164      0      2      2      0      0      0
+G07    904      0   32.82  0.259981      0      2      2      0      0      0
+G26    838      0   38.15  0.264572      0      2      2      0      0      0
+G27    916      0   35.15  0.256656      0      2      2      0      0      0
+G17    861      0   36.19  0.273448      0      2      2      0      0      0
+G09    837      0   35.68  0.252220      0      2      2      0      0      0
+G32    916      0   32.46  0.256949      0      2      2      0      0      0
+G14    881      0   36.88  0.241289      0      2      2      0      0      0
+G20    875      0   32.40  0.249290      0      2      2      0      0      0
+G04    820      0   37.32  0.264176      0      2      2      0      0      0
+G12    897      0   33.08  0.235798      0      2      2      0      0      0
+G23    898      0   32.53  0.295453      0      2      1      0      0      0
+G02    835      0   36.20  0.245639      0      2      2      0      0      0
+G30    858      0   33.69  0.246967      0      2      2      0      0      0
+G31    864      0   37.86  0.242062      0      2      2      0      0      0
+G13    902      0   33.46  0.320816      0      2      2      0      0      0
+G29    902      0   32.20  0.253191      0      2      2      0      0      0
+G10    832      0   37.69  0.250072      0      2      2      0      0      0
+G24    876      0   33.68  0.243586      0      2      2      0      0      0
+G16    853      0   37.78  0.251986      0      2      2      0      0      0
+G21    896      0   31.54  0.258991      0      2      2      0      0      0
+G25*   113      0    0.00  0.274018      0      1      1      0      0      0
+   * = SV with no NAV info (or not being used)
+
+mean MP21 rms        :  0.262619 m
+total mean elevation : 34.77 degrees
+# MP21 obs > 10      :  25388
+# qc MP21 slips < 25 :      0
+# Rvr L1 slips < 25  :     59
+# Rvr L2 slips < 25  :     58
+# qc MP21 slips > 25 :      0
+# Rvr L1 slips > 25  :      0
+# Rvr L2 slips > 25  :      0
+
+elev (deg)  tot slps <MP21 rms, m>        5=%       1|m      15=%       2|m
+ 85 - 90      0    0   0.000000  
+ 80 - 85      0    0   0.000000  
+ 75 - 80      0    0   0.000000  
+ 70 - 75    235    0   0.197681  ||||
+ 65 - 70    863    0   0.203939  ||||
+ 60 - 65   1099    0   0.206003  ||||
+ 55 - 60   1268    0   0.214001  ||||
+ 50 - 55   1423    0   0.215691  ||||
+ 45 - 50   1855    0   0.208970  ||||
+ 40 - 45   2041    0   0.215538  ||||
+ 35 - 40   2140    0   0.219121  ||||
+ 30 - 35   2386    0   0.227388  |||||
+ 25 - 30   2977    0   0.257459  |||||
+ 20 - 25   3982    0   0.280090  ||||||
+ 15 - 20   3702    0   0.340570  |||||||
+ 10 - 15   1275    0   0.389301  ||||||||
+  5 - 10      0    0   0.000000  
+  0 -  5      0    0   0.000000  
+    <  0      0    0   0.000000  
+
+S/N L1 summary (per elevation bin):
+elev (deg)  tot SN1 sig    mean          2|0       4|0       6|0       8|0
+ 85 - 90      0   0.000    0.000 
+ 80 - 85      0   0.000    0.000 
+ 75 - 80      0   0.000    0.000 
+ 70 - 75    235   3.513   51.251 ##||||||||||||||||||||||||
+ 65 - 70    864   2.073   51.068 #|||||||||||||||||||||||||
+ 60 - 65   1099   1.903   50.836 #||||||||||||||||||||||||
+ 55 - 60   1268   1.859   50.681 #||||||||||||||||||||||||
+ 50 - 55   1423   1.747   50.352 #||||||||||||||||||||||||
+ 45 - 50   1856   1.653   49.798 #||||||||||||||||||||||||
+ 40 - 45   2042   1.628   49.037 #||||||||||||||||||||||||
+ 35 - 40   2140   1.574   47.817 #|||||||||||||||||||||||
+ 30 - 35   2387   1.532   46.721 #||||||||||||||||||||||
+ 25 - 30   2980   1.513   45.442 #||||||||||||||||||||||
+ 20 - 25   3984   1.574   43.692 #|||||||||||||||||||||
+ 15 - 20   3703   1.632   42.213 #||||||||||||||||||||
+ 10 - 15   1294   2.030   41.131 #||||||||||||||||||||
+  5 - 10      0   0.000    0.000 
+  0 -  5      0   0.000    0.000 
+    <  0      0   0.000    0.000 
+
+S/N L2 summary (per elevation bin):
+elev (deg)  tot SN2 sig    mean          2|0       4|0       6|0       8|0
+ 85 - 90      0   0.000    0.000 
+ 80 - 85      0   0.000    0.000 
+ 75 - 80      0   0.000    0.000 
+ 70 - 75    235   2.858   41.839 #||||||||||||||||||||
+ 65 - 70    864   1.708   41.549 #||||||||||||||||||||
+ 60 - 65   1099   1.564   40.667 #|||||||||||||||||||
+ 55 - 60   1268   1.499   39.728 #|||||||||||||||||||
+ 50 - 55   1423   1.524   38.928 #||||||||||||||||||
+ 45 - 50   1856   1.523   37.596 #||||||||||||||||||
+ 40 - 45   2042   1.664   36.144 #|||||||||||||||||
+ 35 - 40   2140   1.827   34.327 #||||||||||||||||
+ 30 - 35   2387   2.000   32.051 #|||||||||||||||
+ 25 - 30   2980   1.946   29.655 #||||||||||||||
+ 20 - 25   3984   2.268   26.973 #||||||||||||
+ 15 - 20   3703   2.324   24.305 #|||||||||||
+ 10 - 15   1294   2.532   22.504 #||||||||||
+  5 - 10      0   0.000    0.000 
+  0 -  5      0   0.000    0.000 
+    <  0      0   0.000    0.000 
