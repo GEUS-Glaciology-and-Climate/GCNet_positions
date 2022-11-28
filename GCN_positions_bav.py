@@ -10,7 +10,7 @@ tip list:
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from adjustText import adjust_text
+# from adjustText import adjust_text
 # import matplotlib.colormap as cm
 import geopandas as gpd
 from pandas.tseries.frequencies import to_offset
@@ -30,11 +30,11 @@ abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 i=0
 for j in df_pos.id.unique():
 
-    if df_pos.loc[df_pos.id==j,'name'].iloc[0] not in ['SWC', 'CP1', 'NAU', 
-                                                       'GIT', 'TUN', 'DY2', 
-                                                       'JR1', 'NAE','NSE', 'PET']:
-        continue
-    if j in [25, 26, 27, 28]:
+    # if df_pos.loc[df_pos.id==j,'name'].iloc[0] not in ['SWC', 'CP1', 'NAU', 
+    #                                                    'GIT', 'TUN', 'DY2', 
+    #                                                    'JR1', 'NAE','NSE', 'PET']:
+    #     continue
+    if j in [13, 14, 16, 17, 18, 19, 21, 25, 26, 27, 28]:
         continue
     fig, ax=plt.subplots(1,1, figsize=(7,6))
     # ax=ax.flatten()
@@ -45,7 +45,7 @@ for j in df_pos.id.unique():
     ax[0].set_title(abc[i-1]+'. '+tmp.name_long.unique()[0])
 
     tmp_interp= pd.DataFrame()
-    tmp_interp['date'] = pd.to_datetime(np.append( tmp.date.values, ['1995-05-01', '2022-05-01']), errors='coerce')
+    tmp_interp['date'] = pd.to_datetime(np.append( tmp.date.values, ['1995-05-01', '2022-11-01']), errors='coerce')
     tmp_interp['lon'] = tmp.lon
     tmp_interp['lat'] = tmp.lat
     tmp_interp = tmp_interp.sort_values('date')
