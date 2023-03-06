@@ -50,7 +50,7 @@ def toYearFraction(date):
 plt.close('all')
 # col = cm('Spectral',32)
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
+df_all = pd.DataFrame()
 i=0
 for j in  df_pos.id.unique():
     station=df_pos.loc[df_pos.id==j,'name_long'].iloc[0]
@@ -75,10 +75,15 @@ for j in  df_pos.id.unique():
     tmp_interp = tmp_interp.sort_values('date')
     tmp_interp = tmp_interp.loc[tmp_interp.date.notnull(), :].set_index('date')
     tmp_interp = tmp_interp.resample('3M').mean()
-    tmp_interp = tmp_interp.interpolate(method='spline', order=1, 
+    tmp_interp = tmp_interp.interpolate(method='spline',order=1, 
                                         limit_direction='both', fill_value="extrapolate")
     tmp_interp_y = tmp_interp.resample('Y').mean()
-    tmp_interp_y.index = tmp_interp_y.index 
+    tmp_interp_y['site'] = station
+    if len(df_all)==0:
+        df_all = tmp_interp_y[['site', 'lon','lat']].reset_index()
+    else:
+        df_all = pd.concat((df_all, tmp_interp_y[['site', 'lon','lat']].reset_index()))
+    
     tmp_interp = tmp_interp.reset_index()
     tmp_interp_y = tmp_interp_y.reset_index()
     
@@ -93,8 +98,8 @@ for j in  df_pos.id.unique():
     gdf2['v'] = np.sqrt(gdf2.geometry.x.diff()**2 + gdf2.geometry.y.diff()**2) / (tmp_interp_y.date.diff().dt.days/365)
     print(j, station, '%0.0f'%gdf.loc[gdf.v.notnull(),'v'].median(), '%0.0f'%gdf2.loc[gdf2.v.notnull(),'v'].median())
     
-    fig, ax=plt.subplots(1,1, figsize=(7,6))
-    plt.subplots_adjust(right=0.8)
+    fig, ax=plt.subplots(1,1, figsize=(8,8))
+    plt.subplots_adjust(left = 0.2, right=0.8)
     # ax=ax.flatten()
     ax = [ax]
     i = i+1
@@ -102,14 +107,18 @@ for j in  df_pos.id.unique():
     plt.xlabel('Longitude ($^o$E)',fontsize=14)
     plt.ylabel('Latitude ($^o$N)',fontsize=14)
     w = tmp_interp_y.lon.max() - tmp.lon.min()
-    xlim = [tmp_interp_y.lon.min()-w/8, tmp_interp_y.lon.max()+w/8]
+    xlim = [tmp_interp_y.lon.min()-w/7, tmp_interp_y.lon.max()+w/8]
     ax[0].set_xlim(xlim)
     h = tmp_interp_y.lat.max() - tmp_interp_y.lat.min()
-    ylim = [tmp_interp_y.lat.min()-h/8, tmp_interp_y.lat.max()+h/8]
+    ylim = [tmp_interp_y.lat.min()-h/7, tmp_interp_y.lat.max()+h/8]
     ax[0].set_ylim(ylim)
     plt.plot(np.nan,np.nan, 'o',markerfacecolor='k', linestyle='None', label='GPS measurements')
-    plt.plot(np.nan,np.nan, 'd',markerfacecolor='r',linestyle='None', label='annual inter- or extrapolation')
-    plt.legend(loc='upper left',fontsize=12)
+    plt.plot(np.nan,np.nan, 'd',markerfacecolor='r',linestyle='None', label='inter- or extrapolation using \n spline fit on position')
+    if station == 'Swiss Camp':
+        loc = 'upper left'
+    else:
+        loc = 'best'
+    plt.legend(loc=loc, fontsize=12)
     
     images = []
     for year in tmp.index.year.unique():
@@ -122,7 +131,7 @@ for j in  df_pos.id.unique():
         ax[0].annotate(str(tmp2.index.year.values[0]),
                        xy=(tmp2.lon, tmp2.lat),
                        xycoords='data',
-                       xytext=(60, 0), 
+                       xytext=(120, 0), 
                        textcoords='offset pixels',
                         fontsize=12,verticalalignment='center',
                         path_effects=[pe.withStroke(linewidth=4, foreground="white", alpha = 0.5)],
@@ -130,7 +139,7 @@ for j in  df_pos.id.unique():
                         zorder=0)
         if make_gif == 1:
             filename='figs/'+df_pos.loc[df_pos.id==j,'name'].iloc[0]+'_'+str(year)+'.png'
-            fig.savefig(filename)
+            fig.savefig(filename, dpi=300)
             images.append(imageio.imread(filename))
             os.remove(filename)
     ax[0].plot(tmp_interp_y.lon, tmp_interp_y.lat, 
@@ -142,21 +151,23 @@ for j in  df_pos.id.unique():
         ax[0].annotate(tmp_interp_y.date[k].year,
                    xy=(tmp_interp_y.lon[k], tmp_interp_y.lat[k]),
                    xycoords='data',
-                   xytext=(-60, 0), 
+                   xytext=(-250, 0), 
                    textcoords='offset pixels',
                    fontsize=11, color='gray',
                    arrowprops=dict(arrowstyle="-",edgecolor='lightgray'))
 
     filename='figs/'+df_pos.loc[df_pos.id==j,'name'].iloc[0]+'_final.png'
-    fig.savefig(filename)
+    fig.savefig(filename,dpi=300)
     if make_gif == 1:
         images.append(imageio.imread(filename))
         images.append(imageio.imread(filename))
         images.append(imageio.imread(filename))
         if station == 'Swiss Camp':
-            imageio.mimsave(station+'.gif', images,   duration=0.4)
+            imageio.mimsave('figs/gifs/'+station+'.gif', images,   duration=0.4)
         else:
-            imageio.mimsave(station+'.gif', images,   duration=0.6)
-    
+            imageio.mimsave('figs/gifs/'+station+'.gif', images,   duration=0.6)
+
+df_all.date = df_all.date + pd.Timedelta(days=-7*30-3)
+df_all.to_csv('output/GC-Net_annual_summer_position_estimated.csv',index=None)
 
         
