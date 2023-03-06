@@ -5,17 +5,17 @@ The compilation of coordinates is available [here](https://docs.google.com/sprea
 
 All the field books are available [here](https://github.com/GEUS-Glaciology-and-Climate/GC-Net-level-1-data-processing/tree/main/metadata/Field%20Books)
 
-![](figs/SWC.png)
-![](figs/CP1.png)
-![](figs/NAU.png)
-![](figs/GIT.png)
-![](figs/TUN.png)
-![](figs/DY2.png)
-![](figs/JR1.png)
+![](figs/SWC_final.png)
+![](figs/CP1_final.png)
+![](figs/NAU_final.png)
+![](figs/GIT_final.png)
+![](figs/TUN_final.png)
+![](figs/DY2_final.png)
+![](figs/JR1_final.png)
+![](figs/NAE_final.png)
+![](figs/NSE_final.png)
+![](figs/PET_final.png)
 
 JAR1 has daily position from 2009-05-10 to 2009-10-31:
 ![image](https://user-images.githubusercontent.com/35140661/203256827-e1d803f2-da46-42ef-8d8f-f28808a9a07f.png)
 
-![](figs/NAE.png)
-![](figs/NSE.png)
-![](figs/PET.png)
