@@ -12,7 +12,6 @@ All the field books are available [here](https://github.com/GEUS-Glaciology-and-
 
 
 ![](figs/SWC_final.png)
-![](figs/gifs/Swiss%20Camp.gif)
 ![](figs/CP1_final.png)
 ![](figs/NAU_final.png)
 ![](figs/GIT_final.png)
