@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7729070.svg)](https://doi.org/10.5281/zenodo.7729070)
+
+
 # GC-Net weather station positions processing scripts
 
 J. Box and B. Vandecrux
