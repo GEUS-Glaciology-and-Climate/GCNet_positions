@@ -22,7 +22,7 @@ Tunu-N
 
 The compilation of coordinates is available [here](https://docs.google.com/spreadsheets/d/1R2SA7rqo9PHfAAGeSVgy7eWVHRugV8Z3nbWga5Xin1U/edit?usp=sharing)
 
-All the field books are available [here](https://github.com/GEUS-Glaciology-and-Climate/GC-Net-level-1-data-processing/tree/main/metadata/Field%20Books)
+All the field books are available [here](https://doi.org/10.5281/zenodo.7728939)
 
 
 ![](figs/SWC_final.png)
