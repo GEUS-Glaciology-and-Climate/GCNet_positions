@@ -114,6 +114,7 @@ for j in  df_pos.id.unique():
     ax[0].set_ylim(ylim)
     plt.plot(np.nan,np.nan, 'o',markerfacecolor='k', linestyle='None', label='GPS measurements')
     plt.plot(np.nan,np.nan, 'd',markerfacecolor='r',linestyle='None', label='inter- or extrapolation using \n spline fit on position')
+    plt.ticklabel_format(axis='both',style='plain',useOffset=False)
     if station == 'Swiss Camp':
         loc = 'upper left'
     else:
