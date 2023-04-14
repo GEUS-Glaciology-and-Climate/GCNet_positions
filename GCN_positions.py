@@ -67,17 +67,41 @@ for j in  df_pos.id.unique():
     tmp_interp['lon'] = tmp.lon.values
     tmp_interp['lat'] = tmp.lat.values
     tmp_interp['date'] = tmp.index.values
-    for d in pd.to_datetime(meta.loc[meta.ID==j, ['InstallationDate','LastValidDate']].values[0]):
+    for d in pd.to_datetime(meta.loc[meta.ID==j, ['InstallationDate']].values[0]):
         s = tmp_interp.iloc[0:1,:]
         s.iloc[0,:2] = np.nan
-        s.iloc[0,2]=[d]
+        s.iloc[0,2]=[pd.to_datetime(str(d.year)+'-01-01')]
+        tmp_interp = pd.concat((tmp_interp, s))
+    for d in pd.to_datetime(meta.loc[meta.ID==j, ['LastValidDate']].values[0]):
+        s = tmp_interp.iloc[0:1,:]
+        s.iloc[0,:2] = np.nan
+        s.iloc[0,2]=[pd.to_datetime(str(d.year)+'-12-31')]
         tmp_interp = pd.concat((tmp_interp, s))
     tmp_interp = tmp_interp.sort_values('date')
     tmp_interp = tmp_interp.loc[tmp_interp.date.notnull(), :].set_index('date')
-    tmp_interp = tmp_interp.resample('3M').mean()
+    tmp_interp = tmp_interp.resample('H').mean()
     tmp_interp = tmp_interp.interpolate(method='spline',order=1, 
                                         limit_direction='both', fill_value="extrapolate")
-    tmp_interp_y = tmp_interp.resample('Y').mean()
+
+    tmp_interp_y = tmp_interp.loc[[str(y)+'-06-01' for y in tmp_interp.index.year.unique()],:]
+
+    fig, ax = plt.subplots(2,1,sharex=True)
+    ax[0].plot(tmp_interp.index, tmp_interp.lon, marker='.', linestyle='None', label='hourly estimate')
+    ax[0].plot(tmp_interp_y.index, tmp_interp_y.lon, marker='d', linestyle='None', label='June 1st estimate')
+    ax[0].plot(tmp.index, tmp.lon, marker='o', linestyle='None', label='observed')
+    ax[0].set_ylabel('Longitude (deg W)')
+    ax[0].legend()
+    ax[0].grid()
+
+    ax[1].plot(tmp_interp.index, tmp_interp.lat, marker='.', linestyle='None')
+    ax[1].plot(tmp_interp_y.index, tmp_interp_y.lat, marker='d', linestyle='None')
+    ax[1].plot(tmp.index, tmp.lat, marker='o', linestyle='None')
+    ax[1].set_ylabel('Latitude (deg N)')
+    ax[1].grid()
+    plt.suptitle(station)
+    
+    tmp_interp.to_csv('output/'+station+'_position_interpolated.csv', float_format='%.5f')
+                 
     tmp_interp_y['site'] = station
     if len(df_all)==0:
         df_all = tmp_interp_y[['site', 'lon','lat']].reset_index()
@@ -91,29 +115,32 @@ for j in  df_pos.id.unique():
     gdf = gdf.set_crs(4326)
     gdf = gdf.to_crs(3413)
     gdf['v'] = np.sqrt(gdf.geometry.x.diff()**2 + gdf.geometry.y.diff()**2) / (tmp.index.to_series().diff().dt.days/365)
-    
+    gdf['x'] = gdf.geometry.x/1000
+    gdf['y'] = gdf.geometry.y/1000
     gdf2 = gpd.GeoDataFrame(tmp_interp_y, geometry=gpd.points_from_xy(tmp_interp_y.lon, tmp_interp_y.lat))
     gdf2 = gdf2.set_crs(4326)
     gdf2 = gdf2.to_crs(3413)
     gdf2['v'] = np.sqrt(gdf2.geometry.x.diff()**2 + gdf2.geometry.y.diff()**2) / (tmp_interp_y.date.diff().dt.days/365)
+    gdf2['x'] = gdf2.geometry.x/1000
+    gdf2['y'] = gdf2.geometry.y/1000
     print(j, station, '%0.0f'%gdf.loc[gdf.v.notnull(),'v'].median(), '%0.0f'%gdf2.loc[gdf2.v.notnull(),'v'].median())
-    
-    fig, ax=plt.subplots(1,1, figsize=(8,8))
+
+    fig, ax=plt.subplots(1,1, figsize=(12,8))
     plt.subplots_adjust(left = 0.2, right=0.8)
     # ax=ax.flatten()
     ax = [ax]
     i = i+1
     ax[0].set_title(tmp.name_long.unique()[0],fontsize=14)
-    plt.xlabel('Longitude ($^o$E)',fontsize=14)
-    plt.ylabel('Latitude ($^o$N)',fontsize=14)
-    w = tmp_interp_y.lon.max() - tmp.lon.min()
-    xlim = [tmp_interp_y.lon.min()-w/7, tmp_interp_y.lon.max()+w/8]
+    plt.xlabel('x (km, EPSG:3413)',fontsize=14)
+    plt.ylabel('y (km, EPSG:3413)',fontsize=14)
+    w = gdf2.x.max() - gdf2.x.min()
+    xlim = [gdf2.x.min()-w/5, gdf2.x.max()+w/6]
     ax[0].set_xlim(xlim)
-    h = tmp_interp_y.lat.max() - tmp_interp_y.lat.min()
-    ylim = [tmp_interp_y.lat.min()-h/7, tmp_interp_y.lat.max()+h/8]
+    h = gdf2.y.max() - gdf2.y.min()
+    ylim = [gdf2.y.min()-h/7, gdf2.y.max()+h/8]
     ax[0].set_ylim(ylim)
     plt.plot(np.nan,np.nan, 'o',markerfacecolor='k', linestyle='None', label='GPS measurements')
-    plt.plot(np.nan,np.nan, 'd',markerfacecolor='r',linestyle='None', label='inter- or extrapolation using \n spline fit on position')
+    plt.plot(np.nan,np.nan, 'd',markerfacecolor='r',linestyle='None', label='inter- or extrapolated position on 1 June using \n spline fit on measured position')
     plt.ticklabel_format(axis='both',style='plain',useOffset=False)
     if station == 'Swiss Camp':
         loc = 'upper left'
@@ -122,15 +149,15 @@ for j in  df_pos.id.unique():
     plt.legend(loc=loc, fontsize=12)
     
     images = []
-    for year in tmp.index.year.unique():
-        tmp2 = tmp.loc[str(year),:].copy()
-        ax[0].plot(tmp2.lon, tmp2.lat, 'k', markersize=10,
+    for year in gdf.index.year.unique():
+        tmp2 = gdf.loc[str(year),:].copy()
+        ax[0].plot(tmp2.x, tmp2.y, 'k', markersize=10,
                    label='observed',
                    marker = 'o', linestyle='None')
         if tmp2.shape[0]>1:
-            tmp2 = tmp2[['lat','lon']].resample('Y').mean()
+            tmp2 = tmp2[['x','y']].resample('Y').mean()
         ax[0].annotate(str(tmp2.index.year.values[0]),
-                       xy=(tmp2.lon, tmp2.lat),
+                       xy=(tmp2.x, tmp2.y),
                        xycoords='data',
                        xytext=(120, 0), 
                        textcoords='offset pixels',
@@ -138,19 +165,20 @@ for j in  df_pos.id.unique():
                         path_effects=[pe.withStroke(linewidth=4, foreground="white", alpha = 0.5)],
                         arrowprops=dict(arrowstyle="-", edgecolor='black'),
                         zorder=0)
+        
         if make_gif == 1:
             filename='figs/'+df_pos.loc[df_pos.id==j,'name'].iloc[0]+'_'+str(year)+'.png'
             fig.savefig(filename, dpi=300)
             images.append(imageio.imread(filename))
             os.remove(filename)
-    ax[0].plot(tmp_interp_y.lon, tmp_interp_y.lat, 
+    ax[0].plot(gdf2.x, gdf2.y, 
                label='annual inter- or extrapolated',
                marker = 'd',color='tab:red',  linestyle='None',
                zorder=0)
     
-    for k in range(tmp_interp_y.shape[0]):
-        ax[0].annotate(tmp_interp_y.date[k].year,
-                   xy=(tmp_interp_y.lon[k], tmp_interp_y.lat[k]),
+    for k in range(gdf2.shape[0]):
+        ax[0].annotate(gdf2.date[k].year,
+                   xy=(gdf2.x[k], gdf2.y[k]),
                    xycoords='data',
                    xytext=(-250, 0), 
                    textcoords='offset pixels',
@@ -168,7 +196,7 @@ for j in  df_pos.id.unique():
         else:
             imageio.mimsave('figs/gifs/'+station+'.gif', images,   duration=0.6)
 
-df_all.date = df_all.date + pd.Timedelta(days=-7*30-3)
-df_all.to_csv('output/GC-Net_annual_summer_position_estimated.csv',index=None)
+    # df_all.date = df_all.date + pd.Timedelta(days=-7*30-3)
+    df_all.to_csv('output/GC-Net_annual_summer_position_estimated.csv',index=None)
 
         
