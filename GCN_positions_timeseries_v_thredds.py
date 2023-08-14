@@ -7,12 +7,10 @@
 obtain monthly coordinates from transmissions
 
 input:
-    aws IMEI numbered decoded SBD transmissions
+    aws data from Thredds server
     
 output:
     monthly Google Earth placemarkers
-    the attached table, equivalent with that for PROMICE ESSD positions table after https://github.com/GEUS-Glaciology-and-Climate/PROMICE_positions
-    graphics like in the ESSD
 
 """
 import math
@@ -26,6 +24,8 @@ from datetime import datetime
 import sys
 import simplekml
 # import geopy.distance
+from datetime import date
+import calendar
 
 # -------------------------------- set the working path automatically
 if os.getlogin() == 'jason':
@@ -33,20 +33,6 @@ if os.getlogin() == 'jason':
 os.chdir(base_path)
 sys.path.append(base_path)
 
-from datetime import datetime
-import pandas as pd
-import os
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import numpy as np
-from datetime import date
-import geopandas as gpd
-from pyproj import Proj, transform
-from PIL import Image
-# from datetime import date
-from datetime import timedelta
-import ftplib
-import calendar
 
 
 # ----------------------------------------------------------
