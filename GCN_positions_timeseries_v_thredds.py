@@ -38,10 +38,10 @@ sys.path.append(base_path)
 # ----------------------------------------------------------
 # ----------------------------------------------------------
 # some main user-defined variables
-plot_individual=1 ; site='JAR_O' #'SWC_O'# 'QAS_U' 
+plot_individual=1 ; site='CP1' #'SWC_O'# 'QAS_U' 
 do_plot=1 # set to 1 if user wants plots
 plt_map=0 # if set to 1 draws a map to the right of the graphic
-ly='p' # either 'x' or 'p', 'x' is for display to local plots window, 'p' writes a .png graphic
+ly='x' # either 'x' or 'p', 'x' is for display to local plots window, 'p' writes a .png graphic
 do_NRT=1 # do near realtime? 1 f or yes
 do_ftp=0 # set to 1 if push values
 plot_stars_on_extreme_values=1 # like it says ;-)
@@ -85,7 +85,7 @@ meta = meta.rename({'stid': 'name'}, axis=1)
 # meta.drop(meta[meta.name=='NUK_U'].index, inplace=True) # drop original time column
 # drop some sites from the list, sites not transmitting in the interest of time
 # names=['HUM','DY2','CEN1','CEN2','CP1','NAE','NAU','NEM','NSE','SDM','SDL']
-names=['HUM','JAR','NAU','SUM','CEN1','CEN2','QAS_Uv3','SWC','QAS_Uv3','NUK_U','UWN','Roof_PROMICE','Roof_GEUS','LYN_T','LYN_L','KPC_Lv3','KPC_Uv3','THU_L2','WEG_B','ZAK_Uv3','MIT'] #
+names=['HUM','NAU','SUM','CEN1','CEN2','QAS_Uv3','QAS_Uv3','NUK_U','UWN','Roof_PROMICE','Roof_GEUS','LYN_T','LYN_L','KPC_Lv3','KPC_Uv3','THU_L2','WEG_B','ZAK_Uv3','MIT'] #
 for name in names:
     meta.drop(meta[meta.name==name].index, inplace=True) # drop original time column
 
@@ -130,7 +130,11 @@ n_sites=len(names)
 
 if plot_individual:
     names=names[names==site]
-    
+
+#%%
+# names=['SDL']
+# site='SDL'
+# timeframe='hour'
 for i,name in enumerate(names):
     if i>=0:
 
@@ -148,8 +152,7 @@ for i,name in enumerate(names):
         
         print(df.columns)
 
-        # df.t_u
-        # position
+        
         n=20
         lat=np.nanmean(df.gps_lat)#[-n:])
         lon=-abs(np.nanmean(df.gps_lon))#[-n:])
@@ -162,7 +165,7 @@ for i,name in enumerate(names):
         # plt.ylabel('VDC')
         # plt.title(name+' 2023 from Thredds')
         # plt.setp(ax.xaxis.get_majorticklabels(), rotation=90,ha='center' )
-#%%
+
         df["date"] = pd.to_datetime(df.time)
 
         df['year'] = pd.DatetimeIndex(df["date"]).year
@@ -173,10 +176,48 @@ for i,name in enumerate(names):
         df['doy_dec'] = df['doy']+(df['hour']-1)/23
         df.index = pd.to_datetime(df.time)
     
-        # print(df.columns)
+        print(df.columns)
         # print(df)
         
 
+        # lat=df.gps_lat
+        # lon=df.gps_lon
+        # elev=df.gps_alt
+#%%
+        plt.close()
+        fig, ax = plt.subplots(3,1,figsize=(8,12))
+
+        cc=0
+        ax[cc].plot(df['date'],df['gps_lat'],'.',color='k')
+        ax[0].set_title(name+' latitude')
+        ax[cc].set_xticklabels([])
+
+        cc+=1
+        ax[cc].plot(df['date'],df['gps_lon'],'.',color='k')
+        ax[cc].set_title(name+' longitude')
+        ax[cc].set_xticklabels([])
+
+        cc+=1
+        ax[cc].plot(df['date'],df['gps_alt'],'.',color='k')
+        ax[cc].set_title(name+' elevation')
+        plt.setp(ax[cc].xaxis.get_majorticklabels(), rotation=90,ha='center' )
+        
+        
+        if site=='SDL':
+            x=df['date'][df['gps_lat']>69]
+            print('last date with CP1 latitude',x[-1])
+            inv=df['gps_lat']>69
+            df['gps_lat'][x]=np.nan
+            df['gps_lon'][x]=np.nan
+            df['gps_alt'][x]=np.nan
+
+        if site=='CP1':
+            x=df['gps_alt']<1944
+            df['gps_lat'][x]=np.nan
+            df['gps_lon'][x]=np.nan
+            df['gps_alt'][x]=np.nan
+
+#%%
     
         #----- compute time dependence of position
         
@@ -267,7 +308,7 @@ for i,name in enumerate(names):
         df1d["elev std"]=pd.Series(elev_std)
         df1d['elev std'] = df1d['elev std'].apply(lambda x: '%.2f' % x)
         df1d["elev count"]=pd.Series(elev_count)
-        ofile='./output/'+site+'_positions_monthly'
+        ofile='./output/Jason/'+site+'_positions_monthly'
         df1d.to_csv(ofile+'.csv',index=None)
         print(df1d)
     # df1d.to_excel(ofile+'.xlsx')

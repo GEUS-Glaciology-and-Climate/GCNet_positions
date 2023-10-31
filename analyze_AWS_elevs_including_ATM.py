@@ -9,6 +9,9 @@ compare ATM and other sources of AWS elevations
 
 see ATM folder in this repository
 
+for the GEUS GPS, this scripts reads output from which currently has some simple filtering of SDL and CP1 outliers
+    ./GCN_positions_timeseries_v_thredds.py
+
 """
 
 from glob import glob
@@ -55,6 +58,41 @@ for name in names:
 
 print(meta.name)
 print(meta.columns)
+
+
+#%% obtain geoidal heights using data from  https://www.agisoft.com/downloads/geoids/
+import rasterio
+dat = rasterio.open(r"/Users/jason/0_dat/geoid/us_nga_egm2008_25.tiff")
+# read all the data from the first band
+z = dat.read()[0]
+#%%
+# check the crs of the data
+# dat.crs
+# >>> CRS.from_epsg(4326)
+
+# check the bounding-box of the data
+# dat.bounds
+# >>> Out[49]: BoundingBox(left=-120.0, bottom=45.0, right=-117.0, top=48.0)
+
+# since the raster is in regular lon/lat grid (4326) we can use 
+# `dat.index()` to identify the index of a given lon/lat pair
+# (e.g. it expects coordinates in the native crs of the data)
+
+def getval(lon, lat):
+    idx = dat.index(lon, lat, precision=1E-6)    
+    # return dat.xy(*idx), z[idx]
+    return z[idx]
+
+
+N=len(meta)
+x=np.zeros(N)
+
+for i in range(N):
+   # print( getval(meta.lon.values[i], meta.lat.values[i]))
+   x[i]=getval(meta.lon.values[i], meta.lat.values[i])
+   print(i,meta.lon.values[i], meta.lat.values[i],x)
+
+meta["EGM2008"]=x
 
 #%%
 df = pd.read_excel('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/GC-Net historical positions.xlsx')
@@ -127,6 +165,7 @@ years=['1995',
 n_years=len(years)
 
 print(n_years)
+
 #%%
 
 th=1 
@@ -191,7 +230,7 @@ for k in range(n_AWS):
         v=np.where(df.site==sites[k])
         v=v[0]
         yearx[yy]=int(year)
-        elevs[yy]=df.elev_ATM[v]
+        elevs[yy]=df.elev_ATM[v]-meta["EGM2008"].values[k]
         dist[yy]=df.dist[v]
         
         # x1=np.sin(np.radians(df.slope_S2N.values[k]))*df.dist.values[k]*1000
@@ -200,7 +239,7 @@ for k in range(n_AWS):
         # x2=df.slope_W2E.values[v][0]*df.dist[v][0]*1000
         x1=df.slope_S2N.values[v]*df.dist.values[v]*1000
         x2=df.slope_W2E.values[v]*df.dist[v]*1000
-        yx[yy]=df.elev_ATM.values[v]-x1+x2
+        yx[yy]=df.elev_ATM.values[v]-meta["EGM2008"].values[k]-x1+x2
         if dist[yy]<min_tolerated_dist:
             # print(yearx[yy],"%.1f"%elevs[yy],"%.1f"%dist[yy],"%.1f"%(df.slope_S2N.values[v][0]*1000),"%.1f"%(df.slope_W2E.values[v][0]*1000),
             #       "%.1f"%x1,"%.1f"%x2,"%.1f"%(x1+x2))
@@ -224,26 +263,29 @@ for k in range(n_AWS):
         plt.plot(xx,yy,c='grey')
         # print(np.mean(y),np.std(y))
     plt.title(sites[k])
-    plt.ylabel('altitude m above WGS84 ellipsoid')
+    plt.ylabel('elevation above mean sea level, m')
     
-    year0=1989 ; year1=2023
+    year0=1989 ; year1=2024
     plt.xlim(year0,year1)
     
     v=pos.name_long==sites[k]
     y3=pos.elev[v]
     if ~np.isnan(np.std(y3)):
-        plt.plot(pos.year[v],y3,'s', fillstyle='none',markersize=ms,c='b',label="GC-Net historical positions.xlsx: %.0f"%np.mean(y3)+"±%.0f"%np.std(y3)+' m')
+        plt.plot(pos.year[v],y3,'s', fillstyle='none',markersize=ms/2,c='b',label="GC-Net historical positions.xlsx: %.0f"%np.mean(y3)+"±%.0f"%np.std(y3)+' m')
     
+    suffix=''
     fn = Path(f'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/Jason/{nicknames[k]}_positions_monthly.csv')
     if fn.is_file():
         print(fn)
         GEUS_AWS_position=pd.read_csv(fn)
         GEUS_AWS_position.elev[GEUS_AWS_position.elev==0]=np.nan
+        GEUS_AWS_position.elev-=1.5
         # GEUS_AWS_position['day']=15
         # GEUS_AWS_position["date"]=pd.to_datetime(GEUS_AWS_position[['year', 'month', 'day']])
         # df['year']=df.date.dt.year
         plt.plot(GEUS_AWS_position.year,GEUS_AWS_position.elev,'s', fillstyle='none',markersize=ms,c='r',
                  label="GEUS GC-Net GPS: %.0f"%np.mean(GEUS_AWS_position.elev)+"±%.0f"%np.std(GEUS_AWS_position.elev)+' m')
+        suffix='_has_GEUS_AWS_GPS'
 
     plt.hlines(meta.elev.values[k],year0,year1,color='k',label="Table 4 Vandecrux er al 2023: %.0f"%meta.elev.values[k]+' m')
 
@@ -253,3 +295,5 @@ for k in range(n_AWS):
     if ly =='x':plt.show()
     if ly =='p':
         plt.savefig(f'./ATM/Figs/{sites[k]}.png', bbox_inches='tight', dpi=150)
+        if suffix!='':
+            plt.savefig(f'./ATM/Figs/has_GEUS_AWS_GPS/{sites[k]}_{suffix}.png', bbox_inches='tight', dpi=150)
