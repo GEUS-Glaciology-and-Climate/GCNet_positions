@@ -1,6 +1,3 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7729070.svg)](https://doi.org/10.5281/zenodo.7729070)
-
-
 # GC-Net weather station positions processing scripts
 
 J. Box and B. Vandecrux
@@ -16,6 +13,8 @@ linear functions to estimate elevation v time are based on [this table](https://
 Find figures here and two scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
 
 ## horizontal positions
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7729070.svg)](https://doi.org/10.5281/zenodo.7729070)
+
 This script processes the compilation of coordiantes gathered at the GC-Net sites.
 Most of the coordinates were obtained with handheld GPSs with varying accuracies.
 For each site, we then fit use a spline of order one to inter- or extrapolate the station summer position.
