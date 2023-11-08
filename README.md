@@ -3,6 +3,7 @@
 ## vertical positions (elevation above mean sea level)
 
 J. Box
+
 We estimate the time-dependence of GC-Net site elevations over the 1995-2019 period using NASA Airborne Topographic Mapper (ATM) surveys. A linear regression fit is made to ATM data within 2 km of GC-Net positions . From these data, .
 
 linear functions to estimate elevationv time are based on [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv), where on a site by site basis: 
