@@ -6,19 +6,21 @@ J. Box
 
 We estimate the time-dependence of GC-Net site elevations over the 1995-2019 period using NASA Airborne Topographic Mapper (ATM) surveys. 
 
+### examples
+
 ![SWC_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/a8b5f26c-8597-4bd9-a107-d6e9a98a90f6)
 
 ![JAR_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/daa0d86a-c911-443d-95e3-e6d1dc15917d)
 
-The magenta line is the linear regression fit made to multi-year ATM data within 2 km of GC-Net positions, where:
+The magenta line is the suggested linear fit (coefficients below) made to multi-year ATM data within 2 km of GC-Net positions. The dashed grey line is the fit to both tghe ATM data and the post-2019 GEUS GC-Net data (red squares).
+
+The estimated time-dependent elevation:
 
 <p align="center">
-<b>time-dependent elevation = time * elev_linear_slope + elev_linear_intercept</b>
+<b>elevation = time * elev_linear_slope + elev_linear_intercept</b>
 </p>
 
-Elevation units = meters. Time format is decimal year, .e.g., 1996.8972. The column headers **elev_linear_slope** and **elev_linear_intercept** are site-specific as in the above-linked table.
-
-Site specific linear function coefficients to estimate elevations versus time time appear in [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv).
+Time units are decimal year, .e.g., 1996.8972. The column headers **elev_linear_slope** and **elev_linear_intercept** refer to the site-specific regression coefficients, as in [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv).
 
 Find figures [here](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/tree/main/ATM/Figs).
 
