@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
-    <Document id="105">
-        <Style id="108">
-            <IconStyle id="110">
+    <Document id="433">
+        <Style id="436">
+            <IconStyle id="438">
                 <colorMode>normal</colorMode>
                 <scale>1</scale>
                 <heading>0</heading>
-                <Icon id="111">
+                <Icon id="439">
                     <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
                 </Icon>
             </IconStyle>
-            <LabelStyle id="109">
+            <LabelStyle id="437">
                 <color>ff0000ff</color>
                 <colorMode>normal</colorMode>
                 <scale>1.5</scale>
             </LabelStyle>
         </Style>
         <open>1</open>
-        <Placemark id="107">
-            <name>JAR_2022_11</name>
-            <styleUrl>#108</styleUrl>
-            <Point id="106">
-                <coordinates>-49.7205079,69.49214350000001,0.0</coordinates>
+        <Placemark id="435">
+            <name>CEN1_2021_04</name>
+            <styleUrl>#436</styleUrl>
+            <Point id="434">
+                <coordinates>-61.11579833333333,77.18178916666666,0.0</coordinates>
                 <altitudeMode>relativeToGround</altitudeMode>
             </Point>
         </Placemark>

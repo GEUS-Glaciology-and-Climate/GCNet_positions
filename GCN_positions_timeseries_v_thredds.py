@@ -38,7 +38,7 @@ sys.path.append(base_path)
 # ----------------------------------------------------------
 # ----------------------------------------------------------
 # some main user-defined variables
-plot_individual=1 ; site='CP1' #'SWC_O'# 'QAS_U' 
+plot_individual=1 ; site='HUM' #'SWC_O'# 'QAS_U' 
 do_plot=1 # set to 1 if user wants plots
 plt_map=0 # if set to 1 draws a map to the right of the graphic
 ly='x' # either 'x' or 'p', 'x' is for display to local plots window, 'p' writes a .png graphic
@@ -85,7 +85,7 @@ meta = meta.rename({'stid': 'name'}, axis=1)
 # meta.drop(meta[meta.name=='NUK_U'].index, inplace=True) # drop original time column
 # drop some sites from the list, sites not transmitting in the interest of time
 # names=['HUM','DY2','CEN1','CEN2','CP1','NAE','NAU','NEM','NSE','SDM','SDL']
-names=['HUM','NAU','SUM','CEN1','CEN2','QAS_Uv3','QAS_Uv3','NUK_U','UWN','Roof_PROMICE','Roof_GEUS','LYN_T','LYN_L','KPC_Lv3','KPC_Uv3','THU_L2','WEG_B','ZAK_Uv3','MIT'] #
+names=['NAU','SUM','QAS_Uv3','QAS_Uv3','NUK_U','UWN','Roof_PROMICE','Roof_GEUS','LYN_T','LYN_L','KPC_Lv3','KPC_Uv3','THU_L2','WEG_B','ZAK_Uv3','MIT'] #
 for name in names:
     meta.drop(meta[meta.name==name].index, inplace=True) # drop original time column
 
@@ -308,6 +308,8 @@ for i,name in enumerate(names):
         df1d["elev std"]=pd.Series(elev_std)
         df1d['elev std'] = df1d['elev std'].apply(lambda x: '%.2f' % x)
         df1d["elev count"]=pd.Series(elev_count)
+        # if site=='CEN1':
+        #     site='GIT'
         ofile='./output/Jason/'+site+'_positions_monthly'
         df1d.to_csv(ofile+'.csv',index=None)
         print(df1d)
