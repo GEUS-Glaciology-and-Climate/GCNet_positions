@@ -13,7 +13,7 @@ linear functions to estimate elevation v time are based on [this table](https://
 
 ...where on a site by site bases: elevation (meters) = time in decimal years (.e.g. 1996.8972) * 'elev_linear_slope' + 'elev_linear_intercept' 
 
-Find figures here and two scripts, first that to [find the closest ATM data] (https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
+Find figures here and two scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
 
 ## horizontal positions
 This script processes the compilation of coordiantes gathered at the GC-Net sites.
