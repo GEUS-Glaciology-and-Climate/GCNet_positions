@@ -10,7 +10,7 @@ linear functions to estimate elevationv time are based on [this table](https://g
 
 ...where on a site by site basis: 
 <p align="center">
-<b>elevation (meters) = time * elev_linear_slope + elev_linear_intercept</b>
+<b>elevation = time * elev_linear_slope + elev_linear_intercept</b>
 </p>
 
 Elevation units = meters. Time format is decimal year, .e.g., 1996.8972. The column headers **elev_linear_slope** and **elev_linear_intercept** are site-specific as in the linked table.
