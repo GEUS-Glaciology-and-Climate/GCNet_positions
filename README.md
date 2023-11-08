@@ -5,6 +5,13 @@
 
 J. Box and B. Vandecrux
 
+## vertical positions (elevation above mean sea level)
+
+by obtaining NASA Airborne Topographic Mapper data nearby GC-Net positions, we estimate the site elevation over time.
+
+linear functions to estimate elevation v time are based on [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv) where elevation = time in decimal years * elev_linear_slope + elev_linear_intercept. 
+
+## horizontal positions
 This script processes the compilation of coordiantes gathered at the GC-Net sites.
 Most of the coordinates were obtained with handheld GPSs with varying accuracies.
 For each site, we then fit use a spline of order one to inter- or extrapolate the station summer position.
