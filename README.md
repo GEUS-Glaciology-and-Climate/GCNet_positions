@@ -10,10 +10,10 @@ linear functions to estimate elevationv time are based on [this table](https://g
 
 ...where on a site by site basis: 
 <p align="center">
-elevation (meters) = time * 'elev_linear_slope' + 'elev_linear_intercept'
+<b>elevation (meters) = time * elev_linear_slope + elev_linear_intercept</b>
 </p>
 
-Elevation units = meters. Time format is decimal year, .e.g., 1996.8972
+Elevation units = meters. Time format is decimal year, .e.g., 1996.8972. The column headers **elev_linear_slope** and **elev_linear_intercept** are site-specific as in the linked table.
 
 Find figures here and two scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
 
