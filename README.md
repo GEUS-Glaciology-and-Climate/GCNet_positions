@@ -18,7 +18,9 @@ Elevation units = meters. Time format is decimal year, .e.g., 1996.8972. The col
 
 Site specific linear function coefficients to estimate elevations versus time time appear in [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv).
 
-Find figures here and two scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
+Find figures [here](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/tree/main/ATM/Figs).
+
+This work applies wwo scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Read inside the scripts for further info e.g. on obtaining raw ATM data.
 
 ## horizontal positions
 
