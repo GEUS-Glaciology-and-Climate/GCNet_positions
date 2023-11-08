@@ -4,14 +4,19 @@
 
 J. Box
 
-We estimate the time-dependence of GC-Net site elevations over the 1995-2019 period using NASA Airborne Topographic Mapper (ATM) surveys. A linear regression fit is made to ATM data within 2 km of GC-Net positions . From these data, .
+We estimate the time-dependence of GC-Net site elevations over the 1995-2019 period using NASA Airborne Topographic Mapper (ATM) surveys. 
 
-linear functions to estimate elevationv time are based on [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv), where on a site by site basis: 
+![SWC_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/a8b5f26c-8597-4bd9-a107-d6e9a98a90f6)
+
+The magenta line is the linear regression fit made to multi-year ATM data within 2 km of GC-Net positions, where:
+
 <p align="center">
 <b>time-dependent elevation = time * elev_linear_slope + elev_linear_intercept</b>
 </p>
 
 Elevation units = meters. Time format is decimal year, .e.g., 1996.8972. The column headers **elev_linear_slope** and **elev_linear_intercept** are site-specific as in the above-linked table.
+
+Site specific linear function coefficients to estimate elevations versus time time appear in [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv).
 
 Find figures here and two scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
 
