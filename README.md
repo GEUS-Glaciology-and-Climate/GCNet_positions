@@ -8,7 +8,10 @@ by obtaining NASA Airborne Topographic Mapper data nearby GC-Net positions, we e
 
 linear functions to estimate elevation v time are based on [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv) 
 
-...where on a site by site bases: elevation (meters) = time in decimal years (.e.g. 1996.8972) * 'elev_linear_slope' + 'elev_linear_intercept' 
+...where on a site by site basis: 
+<p align="center">
+**elevation (meters) = time in decimal years (.e.g. 1996.8972) * 'elev_linear_slope' + 'elev_linear_intercept'**
+</p>
 
 Find figures here and two scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
 
