@@ -8,6 +8,8 @@ We estimate the time-dependence of GC-Net site elevations over the 1995-2019 per
 
 ![SWC_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/a8b5f26c-8597-4bd9-a107-d6e9a98a90f6)
 
+![JAR_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/daa0d86a-c911-443d-95e3-e6d1dc15917d)
+
 The magenta line is the linear regression fit made to multi-year ATM data within 2 km of GC-Net positions, where:
 
 <p align="center">
