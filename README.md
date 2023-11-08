@@ -12,7 +12,7 @@ We estimate the time-dependence of GC-Net site elevations over the 1995-2019 per
 
 ![JAR_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/daa0d86a-c911-443d-95e3-e6d1dc15917d)
 
-The magenta line is the suggested linear fit (coefficients below) made to multi-year ATM data within 2 km of GC-Net positions. The dashed grey line is the fit to both tghe ATM data and the post-2019 GEUS GC-Net data (red squares).
+The magenta line is the suggested linear fit (coefficients below) made to multi-year ATM data within 2 km of GC-Net positions. 
 
 The estimated time-dependent elevation:
 
@@ -25,6 +25,12 @@ Time units are decimal year, .e.g., 1996.8972. The column headers **elev_linear_
 Find figures [here](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/tree/main/ATM/Figs).
 
 This work applies wwo scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Read inside the scripts for further info e.g. on obtaining raw ATM data.
+
+### Notes
+The dashed grey line is the fit to both the ATM data and the post-2019 GEUS GC-Net data (red squares). We don't recommend this fit because once the sites get their own GPS, we can estimate the site elevation more accurately through a fit of e.g. the pregious month of data.
+
+### Improvements
+Please suggest improvements using the issues link above.
 
 ## horizontal positions
 
