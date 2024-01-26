@@ -47,7 +47,7 @@ def save_kml(lat,lon,namex,opath,ofile):
 
 # ## change to your system's login name to change dir for local work
 if os.getlogin() == 'jason':
-    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/'
+    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/'
 
 os.chdir(base_path)
 
@@ -162,7 +162,7 @@ for geoid in geoids:
     vandecrux_position_compilation=df.copy()
     #%%
     
-    fn='/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/data/GNSS data/2023/Data_overview_2023.xlsx'
+    fn='/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/data/GNSS data/2023/Data_overview_2023.xlsx'
     GNSS_2023 = pd.read_excel(fn,sheet_name='Calculated_positions',skiprows=1)
     # GNSS_2023_meta = pd.read_excel(fn,sheet_name='Time_and_meta')
     GNSS_2023 = GNSS_2023.rename({'Station name': 'name'}, axis=1)
@@ -244,35 +244,35 @@ for geoid in geoids:
     constrain_elev=0
     do_GEUS_GPS=1
     show_approximation_elev_history=1
-    show_khan=1
-    show_stober=1
+    show_khan=0 # switches to 1 if SWC or JAR
+    show_stober=0 # switches to 1 if SWC or JAR
     show_ATM=1
     
 
     choice_site=0 ; elev0=1116 ; elev1=1157 # SWC
     choice_site=1 # CP1
-    # choice_site=2 # CP2
-    # choice_site=3 # JAR1
-    # choice_site=4 # JAR2
-    # choice_site=5 # JAR3
-    # choice_site=6 # NAU
-    # choice_site=7 # GIT
-    # choice_site=8 # HUM
-    # choice_site=9 # SUM
-    # choice_site=10 # TUN
-    # choice_site=11 # DY2
-    # choice_site=12 # SDL
-    # choice_site=13 # SDM
-    # choice_site=14 # NAE
+    choice_site=2 # CP2
+    choice_site=3 # JAR1
+    choice_site=4 # JAR2
+    choice_site=5 # JAR3
+    choice_site=6 # NAU
+    choice_site=7 # GIT
+    choice_site=8 # HUM
+    choice_site=9 # SUM
+    choice_site=10 # TUN
+    choice_site=11 # DY2
+    choice_site=12 # SDL
+    choice_site=13 # SDM
+    choice_site=14 # NAE
     choice_site=15 # NSE
-    # choice_site=16 # NGP
-    # choice_site=17 # NEM
-    # choice_site=18 # EGP
-    # choice_site=19 # KAR
-    # choice_site=20 # KUL
-    # choice_site=21 # AUR
-    # choice_site=22 # PTG
-    # choice_site=23 # PTE
+    choice_site=16 # NGP
+    choice_site=17 # NEM
+    choice_site=18 # EGP
+    choice_site=19 # KAR
+    choice_site=20 # KUL
+    choice_site=21 # AUR
+    choice_site=22 # PTG
+    choice_site=23 # PTE
     
     elevs=np.zeros(n_years)
     time_ATM_decimal_year=np.zeros(n_years)
@@ -280,19 +280,26 @@ for geoid in geoids:
     dist=np.zeros(n_years)
 
         
-    n_AWS=1
+    # n_AWS=1
     # for k in range(n_AWS):
     for k in [choice_site]:
         
         min_tolerated_dist=1
 
-
+        if nicknames[k]=='SWC':
+            show_stober=1
+            show_khan=1
+            
+        if nicknames[k]=='JAR':
+            show_stober=1
+            show_khan=1
+            
         if nicknames[k]=='SWC':
             time_elev_approximation=[1990.5,2005,2015,2020,2023.5]
             elev_approximation=[1155.5,1135,1122,1119.2,1119.2]
         if nicknames[k]=='CP1':
             time_elev_approximation=[1995,2023.5]
-            elev_approximation=[1960,1946.5]
+            elev_approximation=[1960,1943.0]
         if nicknames[k]=='JAR':
             time_elev_approximation=[1996.5,2010,2015,2023.5]
             elev_approximation=[932.3,919.5,909,906]
@@ -303,14 +310,14 @@ for geoid in geoids:
             time_elev_approximation=[2000,2020]
             elev_approximation=[300,220]
         if nicknames[k]=='NAU':
-            time_elev_approximation=[1995,2022]
-            elev_approximation=[2338,2338]
+            time_elev_approximation=[1995,2023.5]
+            elev_approximation=[2338,2332.6]
         if nicknames[k]=='GIT':
             time_elev_approximation=[1995,2022]
             elev_approximation=[1872,1871]
         if nicknames[k]=='HUM':
-            time_elev_approximation=[1995,2023]
-            elev_approximation=[1974,1968]
+            time_elev_approximation=[1995,2023.5]
+            elev_approximation=[1974,1959.9]
             min_tolerated_dist=8
         if nicknames[k]=='SUM':
             time_elev_approximation=[1996,2023]
@@ -319,32 +326,32 @@ for geoid in geoids:
             time_elev_approximation=[1996,2023]
             elev_approximation=[2074,2078]
         if nicknames[k]=='DY2':
-            time_elev_approximation=[1996,2023]
-            elev_approximation=[2110,2121]
+            time_elev_approximation=[1996,2023.5]
+            elev_approximation=[2115,2110.1]
         if nicknames[k]=='SDL':
-            time_elev_approximation=[1997,2023]
-            elev_approximation=[2456,2462]
+            time_elev_approximation=[1997,2023.5]
+            elev_approximation=[2456,2461.2]
         if nicknames[k]=='SDM':
-            time_elev_approximation=[1997,2022]
-            elev_approximation=[2878,2890]
+            time_elev_approximation=[1997,2023.5]
+            elev_approximation=[2878,2879.5]
         if nicknames[k]=='NAE':
-            time_elev_approximation=[1997,2022]
-            elev_approximation=[2622.5,2626]
+            time_elev_approximation=[1997,2023.5]
+            elev_approximation=[2622.7,2624.9]
         if nicknames[k]=='NSE':
-            time_elev_approximation=[1998,2021]
-            elev_approximation=[2372,2383]
+            time_elev_approximation=[1998,2023.5]
+            elev_approximation=[2372,2378.1]
             min_tolerated_dist=4
         if nicknames[k]=='NGRP':
             time_elev_approximation=[1997,2021]
             elev_approximation=[2919.3,2919.3]
             min_tolerated_dist=4
         if nicknames[k]=='NEM':
-            time_elev_approximation=[2006,2021]
-            elev_approximation=[2451,2451]
+            time_elev_approximation=[2006,2023.5]
+            elev_approximation=[2451,2450.2]
             min_tolerated_dist=4
         if nicknames[k]=='EGP':
-            time_elev_approximation=[2014,2021]
-            elev_approximation=[2663.5,2663.5]
+            time_elev_approximation=[2014,2023.5]
+            elev_approximation=[2663.5,2663.2]
             min_tolerated_dist=4
         if nicknames[k]=='KAR':
             time_elev_approximation=[1999,2002]
@@ -374,7 +381,7 @@ for geoid in geoids:
             # for i in ix:
             #     print(pd.to_datetime(df.date.values[i]).strftime('%Y-%m-%d'))
             #     datexx=pd.to_datetime(df.date.values[i]).strftime('%Y-%m-%d')
-            #     save_kml(df.lat.values[i],df.lon.values[i],'JAR1_'+datexx,'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/output/kml/','JAR1_'+datexx)
+            #     save_kml(df.lat.values[i],df.lon.values[i],'JAR1_'+datexx,'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/kml/','JAR1_'+datexx)
 
             geoid_offset=-meta[geoid].values[k]
 
@@ -418,8 +425,8 @@ for geoid in geoids:
             stober2['jdy']=stober2['year']+stober2['doy']/stober2['n_days']
 
 # 
-        if choice_site==0: # SWC
-   
+        if nicknames[k]=='SWC': # SWC
+            
             fn='./meta/Stober_et_al_2023/SWC+ST2-Alle Pegel_Koordinaten Geodätisch.xlsx'
             # heights are referenced to EUREF, a height system I used since my first measurements in 1991. 
             # For correction to ITRF use ITRF = EUREF  - 1.08 Meter.
@@ -472,7 +479,8 @@ for geoid in geoids:
                     stober2['n_days']=366
             stober2['jdy']=stober2['year']+stober2['doy']/stober2['n_days']
 
-            
+
+
         plt.close()
         plt.clf()
         fig, ax = plt.subplots(figsize=(9,7))
@@ -524,10 +532,9 @@ for geoid in geoids:
             # inv=inv[0]
             # y[inv]=np.nan
         
-            khan=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/Khan/SwissCamp.txt',skiprows=2,delim_whitespace=True,names=['jy','elev'])
+            khan=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/Khan/SwissCamp.txt',skiprows=2,delim_whitespace=True,names=['jy','elev'])
             # print(khan)
             # #%%
-            # plt.plot(stober2['jdy'],(stober2['elev0']+stober2['elev1']+stober2['elev2'])/3,'s',color='k',label="GPS survey c/o M. Stober, Jan 2024, average of\nstakes 106,120,121 "+geoid+": %.1f"%np.mean(stober2['elev0'])+"±%.1f"%np.std(stober2['elev0'])+' m')
             if show_stober:
                 plt.plot(stober2['jdy'],stober2['elev0'],'s',color='k',label="GPS survey c/o M. Stober, Jan 2024, average of\nstakes 106 with 25m offset: %.1f"%np.mean(stober2['elev0'])+"±%.1f"%np.std(stober2['elev0'])+' m')
             if show_khan:
@@ -547,7 +554,7 @@ for geoid in geoids:
                 plt.plot(stober2['jdy'],stober2['elev'],'s',color='k',zorder=20,
                      label=f"Stober ST201 including {ST2_offset} m offset: %.1f"%np.mean(stober2['elev'])+"±%.1f"%np.std(stober2['elev'])+' m')
             if show_khan:
-                khan=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/Khan/JAR.txt',skiprows=2,delim_whitespace=True,names=['jy','elev'])
+                khan=pd.read_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/Khan/JAR.txt',skiprows=2,delim_whitespace=True,names=['jy','elev'])
             # print(khan)
             # #%%
             # plt.plot(stober2['jdy'],(stober2['elev0']+stober2['elev1']+stober2['elev2'])/3,'s',color='k',label="GPS survey c/o M. Stober, Jan 2024, average of\nstakes 106,120,121 with %.1f"%geoid_offset+" m offset: %.1f"%np.mean(stober2['elev0'])+"±%.1f"%np.std(stober2['elev0'])+' m')
@@ -581,8 +588,9 @@ for geoid in geoids:
             # plt.plot(ATM_dates,y2,'s', fillstyle='none',markersize=ms,label="ATM with slope cor: %.1f"%np.mean(yx[v])+"±%.1f"%np.std(yx[v])+' m')
         
         v=nicknames[k]==GNSS_2023.name
-        lab="Jakobsen GNSS %.1f"%GNSS_2023.elev.values[v][0]+'±0.1 m'
-        plt.plot(GNSS_2023['jy'][v],GNSS_2023.elev.values[v],'o',color='c',markersize=ms/2, mew=2,label=lab)
+        if np.sum(v)>0:
+            lab="Jakobsen GEUS 2023 GNSS: %.1f"%GNSS_2023.elev.values[v][0]+'±0.1 m'
+            plt.plot(GNSS_2023['jy'][v],GNSS_2023.elev.values[v],'o', fillstyle='none',color='c',markersize=ms, mew=2,label=lab,zorder=20)
 
         # if len(x)>1:
         #     v=np.where(~np.isnan(y))
@@ -712,7 +720,7 @@ for geoid in geoids:
         if constrain_elev:
             plt.ylim(elev0,elev1)
         
-        ly='x'
+        ly='p'
         if ly =='x':plt.show()
         if ly =='p':
             plt.savefig(f'./ATM/Figs/{nicknames[k]}_{geoid}.png', bbox_inches='tight', dpi=150)
