@@ -29,7 +29,7 @@ import calendar
 
 # -------------------------------- set the working path automatically
 if os.getlogin() == 'jason':
-    base_path = '/Users/jason/Dropbox/AWS/GCNet/GCNet_positions/'
+    base_path = '/Users/jason/Dropbox/AWS/GCNet/GCNet_positions.stash/'
 os.chdir(base_path)
 sys.path.append(base_path)
 
@@ -38,7 +38,7 @@ sys.path.append(base_path)
 # ----------------------------------------------------------
 # ----------------------------------------------------------
 # some main user-defined variables
-plot_individual=1 ; site='HUM' #'SWC_O'# 'QAS_U' 
+plot_individual=1 ; site='JAR' #'SWC_O'# 'QAS_U' 
 do_plot=1 # set to 1 if user wants plots
 plt_map=0 # if set to 1 draws a map to the right of the graphic
 ly='x' # either 'x' or 'p', 'x' is for display to local plots window, 'p' writes a .png graphic
@@ -74,10 +74,10 @@ plt.rcParams['axes.linewidth'] = 1
 
 # ## change to your system's login name to change dir for local work
 if os.getlogin() == 'jason':
-    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/'
+    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/'
 os.chdir(base_path)
 
-meta = pd.read_csv('/Users/jason/Dropbox/AWS/GEUS_AWS_NRT_alerts/ancil/AWS_station_locations.csv')
+meta = pd.read_csv('/Users/jason/Dropbox/S3/SICE_ESSD/ancil/AWS_latest_locations.csv')
 meta = meta.rename({'stid': 'name'}, axis=1)
 # meta.drop(meta[meta.name=='Roof_GEUS'].index, inplace=True) # drop original time column
 # meta.drop(meta[meta.name=='Roof_PROMICE'].index, inplace=True) # drop original time column
@@ -85,7 +85,7 @@ meta = meta.rename({'stid': 'name'}, axis=1)
 # meta.drop(meta[meta.name=='NUK_U'].index, inplace=True) # drop original time column
 # drop some sites from the list, sites not transmitting in the interest of time
 # names=['HUM','DY2','CEN1','CEN2','CP1','NAE','NAU','NEM','NSE','SDM','SDL']
-names=['NAU','SUM','QAS_Uv3','QAS_Uv3','NUK_U','UWN','Roof_PROMICE','Roof_GEUS','LYN_T','LYN_L','KPC_Lv3','KPC_Uv3','THU_L2','WEG_B','ZAK_Uv3','MIT'] #
+names=['NAU','SUM','NUK_U','UWN','Roof_PROMICE','Roof_GEUS','THU_L2','WEG_B','ZAK_Uv3','MIT'] #
 for name in names:
     meta.drop(meta[meta.name==name].index, inplace=True) # drop original time column
 
@@ -96,7 +96,7 @@ names=meta.name
 
 timeframe='day'
 # timeframe='hour'
-iyear=2021 ; fyear=2023
+iyear=2017 ; fyear=2023
 n_years=fyear-iyear+1
 
 # years=np.arange(iyear,fyear+1).astype(int)
@@ -187,6 +187,12 @@ for i,name in enumerate(names):
         plt.close()
         fig, ax = plt.subplots(3,1,figsize=(8,12))
 
+        if site=='SCO_U':
+            v=df['gps_alt']<800
+            df['gps_alt'][v]=np.nan
+            df['gps_lat'][v]=np.nan
+            df['gps_lon'][v]=np.nan
+
         cc=0
         ax[cc].plot(df['date'],df['gps_lat'],'.',color='k')
         ax[0].set_title(name+' latitude')
@@ -205,7 +211,7 @@ for i,name in enumerate(names):
         
         if site=='SDL':
             x=df['date'][df['gps_lat']>69]
-            print('last date with CP1 latitude',x[-1])
+            # print('last date with CP1 latitude',x[-1])
             inv=df['gps_lat']>69
             df['gps_lat'][x]=np.nan
             df['gps_lon'][x]=np.nan
@@ -221,8 +227,8 @@ for i,name in enumerate(names):
     
         #----- compute time dependence of position
         
-        i_year=2021
-        f_year=2023
+        i_year=2012
+        f_year=2024
         n_years=f_year-i_year+1
         
         means=np.zeros(((4,n_years,12)))*np.nan
@@ -253,7 +259,7 @@ for i,name in enumerate(names):
                 means[2,yy,mm]=np.nanmean(df['gps_alt'][v])
                 counts[2,yy,mm]=np.sum(v)
                 means[3,yy,mm]=np.nanstd(df['gps_alt'][v])
-                print(yy+i_year,mm,means[0,yy,mm],means[1,yy,mm],means[2,yy,mm])
+                # print(yy+i_year,mm,means[0,yy,mm],means[1,yy,mm],means[2,yy,mm])
                 
     
                 years[cc]=yy+i_year
@@ -270,7 +276,9 @@ for i,name in enumerate(names):
                     namex=site+'_'+str(yy+i_year)+'_'+str(mm+1).zfill(2)
                     pnt = kml.newpoint(name=namex)
                     pnt.coords=[(-means[1,yy,mm],means[0,yy,mm])]
-                    print(-means[1,yy,mm],means[0,yy,mm])
+                    print(site,yy+i_year,
+                          calendar.month_abbr[mm+1]+" {:.4f}".format(means[0,yy,mm])+\
+                              " {:.4f}".format(-means[1,yy,mm])+" {:.0f}".format(means[2,yy,mm])+"±{:.0f}".format(means[3,yy,mm]*2)+' m')
                     pnt.style.labelstyle.color = simplekml.Color.red  # Make the text red
                     pnt.style.labelstyle.scale = 1.5  # text scaling multiplier
                     pnt.style.iconstyle.icon.href = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png'
@@ -312,7 +320,7 @@ for i,name in enumerate(names):
         #     site='GIT'
         ofile='./output/Jason/'+site+'_positions_monthly'
         df1d.to_csv(ofile+'.csv',index=None)
-        print(df1d)
+        # print(df1d)
     # df1d.to_excel(ofile+'.xlsx')
     
     # v=df.Latitude[np.isfinite(df.Latitude)]

@@ -1,43 +1,21 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7729070.svg)](https://doi.org/10.5281/zenodo.7729070)
+
+
 # GC-Net weather station positions processing scripts
-
-## vertical positions (elevation above mean sea level)
-
-J. Box
-
-We estimate the time-dependence of GC-Net site elevations over the 1995-2019 period using NASA Airborne Topographic Mapper (ATM) surveys. 
-
-### examples
-
-![SWC_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/a8b5f26c-8597-4bd9-a107-d6e9a98a90f6)
-
-![JAR_egm96_15](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/assets/32133350/daa0d86a-c911-443d-95e3-e6d1dc15917d)
-
-The magenta line is the suggested linear fit (coefficients below) made to multi-year ATM data within 2 km of GC-Net positions. 
-
-The estimated time-dependent elevation:
-
-<p align="center">
-<b>elevation = time * elev_linear_slope + elev_linear_intercept</b>
-</p>
-
-Time units are decimal year, .e.g., 1996.8972. The column headers **elev_linear_slope** and **elev_linear_intercept** refer to the site-specific regression coefficients, as in [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv).
-
-Find figures [here](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/tree/main/ATM/Figs).
-
-This work applies wwo scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Read inside the scripts for further info e.g. on obtaining raw ATM data.
-
-### Notes
-The dashed grey line is the fit to both the ATM data and the post-2019 GEUS GC-Net data (red squares). We don't recommend this fit because once the sites get their own GPS, we can estimate the site elevation more accurately through a fit of e.g. the pregious month of data.
-
-### Improvements
-Please suggest improvements using the issues link above.
-
-## horizontal positions
 
 J. Box and B. Vandecrux
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7729070.svg)](https://doi.org/10.5281/zenodo.7729070)
+## vertical positions (elevation above mean sea level)
 
+by obtaining NASA Airborne Topographic Mapper data nearby GC-Net positions, we estimate the site elevation over time.
+
+linear functions to estimate elevation v time are based on [this table](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/output/GC-Net_elevations_solely_from_ATM_fit.csv) 
+
+...where on a site by site bases: elevation (meters) = time in decimal years (.e.g. 1996.8972) * 'elev_linear_slope' + 'elev_linear_intercept' 
+
+Find figures here and two scripts, first that to [find the closest ATM data](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/ATM/find_AWS_elev_from_ATM_data.py) and that to [estimate the elevation over time](https://github.com/GEUS-Glaciology-and-Climate/GCNet_positions/blob/main/analyze_AWS_elevs_including_ATM.py). Notes inside the scripts provides further info e.g. on obtaining raw ATM data.
+
+## horizontal positions
 This script processes the compilation of coordiantes gathered at the GC-Net sites.
 Most of the coordinates were obtained with handheld GPSs with varying accuracies.
 For each site, we then fit use a spline of order one to inter- or extrapolate the station summer position.

@@ -22,10 +22,24 @@ import matplotlib.pyplot as plt
 from numpy.polynomial.polynomial import polyfit
 from pathlib import Path
 import calendar
+import simplekml
+
+def save_kml(lat,lon,namex,opath,ofile):
+    kml = simplekml.Kml(open=1)
+    pnt = kml.newpoint(name=namex)
+    pnt.coords=[(lon,lat)]
+    pnt.style.labelstyle.color = simplekml.Color.blue  # Make the text red
+    pnt.style.labelstyle.scale = 1.5  # text scaling multiplier
+    pnt.style.iconstyle.icon.href = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png'
+    pnt.altitudemode = simplekml.AltitudeMode.relativetoground
+    
+    kml_ofile=opath+ofile+".kml"
+    kml.save(kml_ofile)
+
 
 # ## change to your system's login name to change dir for local work
 if os.getlogin() == 'jason':
-    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/'
+    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/'
 
 os.chdir(base_path)
 
@@ -114,8 +128,8 @@ for geoid in geoids:
     meta[geoid]=x
     
     #%%
-    df = pd.read_excel('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/GC-Net historical positions.xlsx')
-    
+    df = pd.read_excel('./meta/GC-Net historical positions.xlsx')
+    os.system('open '+'./meta/GC-Net historical positions.xlsx')
     df.drop(df[df.date == 'doc_2000'].index, inplace=True)
     df.drop(df[df.date == 'ref'].index, inplace=True)
     df.drop(df[df.date == 'WMO-DMI_2012'].index, inplace=True)
@@ -129,6 +143,9 @@ for geoid in geoids:
     df['year']=df.date.dt.year
     # print(np.array(df.date))
     # print(len(df))
+    # df.columns
+    # v=np.where(((df.name_long=='JAR1')&(df.elev>940)))
+    # df.elev[v[0]]=np.nan
     pos=df.copy()
     #%%
     n_AWS=len(meta)
@@ -238,15 +255,117 @@ for geoid in geoids:
     dist=np.zeros(n_years)
 
         
-    # n_AWS=1
-    for k in range(n_AWS):
-    # for k in [choice_site]:
+    n_AWS=1
+    # for k in range(n_AWS):
+    for k in [choice_site]:
 # 
         min_tolerated_dist=2
         
         if nicknames[k]=='HUM':
             min_tolerated_dist=8
-        
+
+        if choice_site==3: #JAR
+            # v=np.where(((df.name_long=='JAR1')&(df.elev>940)))
+            # v=np.where(df.name_long=='JAR1')
+            # ix=v[0]
+            # for i in ix:
+            #     print(pd.to_datetime(df.date.values[i]).strftime('%Y-%m-%d'))
+            #     datexx=pd.to_datetime(df.date.values[i]).strftime('%Y-%m-%d')
+            #     save_kml(df.lat.values[i],df.lon.values[i],'JAR1_'+datexx,'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/output/kml/','JAR1_'+datexx)
+
+
+            fn='./meta/Stober_et_al_2023/SWC+ST2-Alle Pegel_Koordinaten Geodätisch.xlsx'
+            # os.system('open '+fn)
+            stober=pd.read_excel(fn,skiprows=7,names=['latdeg','latmin','latsec','NS','lat','emt','londeg','lonmin','lonsec','EW','lon','elevation'],index_col=0)
+            stober = stober.iloc[65:]
+            stober_dates=[]
+            stober_elevs=[]
+            for i,temp in enumerate(stober.index):
+                temp=str(temp)
+                stake=temp[0:5]
+                # print(i,stake)
+                
+                # temp.replace('106-ex010915','nan')
+                # temp.replace('ex010915','nan')
+                # print(i,temp)
+                
+                if temp!='nan':
+                    lat=stober.lat.values[i]
+                    lon=-stober.lon.values[i]
+                    datex=pd.to_datetime(temp[6:],format=('%d%m%y'))
+                    print(stake,datex.strftime('%Y-%m-%d'),lat,lon,stober.elevation.values[i])
+                    
+                    if stake=='ST201':
+                        stober_dates.append(datex.strftime('%Y-%m-%d'))
+                        stober_elevs.append(stober.elevation.values[i]-1.08-67)
+                    # save_kml(lat,lon,stake+' '+datex.strftime('%Y-%m-%d'),'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/kml/Stober_Swiss_Camp/',stake+' '+datex.strftime('%Y-%m-%d'))
+
+            stober2=pd.DataFrame({'date':np.array(stober_dates),
+                              'elev':np.array(stober_elevs),
+                              })
+            stober2['date']=pd.to_datetime(stober2.date)
+            stober2['year'] = stober2['date'].dt.year
+            stober2['doy'] = stober2['date'].dt.dayofyear
+            stober2['n_days']=365
+            for m in range(len(stober2)):
+                if calendar.isleap(stober2.year[m]):
+                    stober2['n_days']=366
+            stober2['jdy']=stober2['year']+stober2['doy']/stober2['n_days']
+
+# 
+        if choice_site==0: # SWC
+   
+            fn='./meta/Stober_et_al_2023/SWC+ST2-Alle Pegel_Koordinaten Geodätisch.xlsx'
+            # heights are referenced to EUREF, a height system I used since my first measurements in 1991. 
+            # For correction to ITRF use ITRF = EUREF  - 1.08 Meter.
+            # os.system('open '+fn)
+            stober=pd.read_excel(fn,skiprows=7,names=['latdeg','latmin','latsec','NS','lat','emt','londeg','lonmin','lonsec','EW','lon','elevation'],index_col=0)
+            stober = stober.iloc[:-32]
+            stober_dates=[]
+            stober_elev0=[]
+            stober_elev1=[]
+            stober_elev2=[]
+            for i,temp in enumerate(stober.index):
+                temp=str(temp)
+                pegel=temp[0:3]
+                temp.replace('106-ex010915','nan')
+                temp.replace('ex010915','nan')
+                # print(i)
+                if temp!='nan' and temp[4:]!='ex010915':
+                    lat=stober.lat.values[i]
+                    lon=-stober.lon.values[i]
+                    datex=pd.to_datetime(temp[4:],format=('%d%m%y'))
+                    # print(pegel,datex.strftime('%Y-%m-%d'),lat,lon,stober.elevation.values[i])
+                    pegs=['106','120','121'] 
+                    oss=1.3
+                    for peg in pegs:
+                        if pegel=='106':
+                            stober_dates.append(datex.strftime('%Y-%m-%d'))
+                            uncert_z=-25/oss
+                            stober_elev0.append(stober.elevation.values[i]-1.08+uncert_z)
+                        if pegel=='120':
+                            uncert_z=-41/oss
+                            stober_elev1.append(stober.elevation.values[i]-1.08+uncert_z)                    
+                        if pegel=='121':
+                            uncert_z=-44/oss
+                            stober_elev2.append(stober.elevation.values[i]-1.08+uncert_z)
+                    # save_kml(lat,lon,pegel+' '+datex.strftime('%Y-%m-%d'),'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/kml/Stober_Swiss_Camp/',pegel+' '+datex.strftime('%Y-%m-%d'))
+
+            stober2=pd.DataFrame({'date':np.array(stober_dates),
+                              'elev0':np.array(stober_elev0),
+                              'elev1':np.array(stober_elev1),
+                              'elev2':np.array(stober_elev2),
+                              })
+            stober2['date']=pd.to_datetime(stober2.date)
+            stober2['year'] = stober2['date'].dt.year
+            stober2['doy'] = stober2['date'].dt.dayofyear
+            stober2['n_days']=365
+            for m in range(len(stober2)):
+                if calendar.isleap(stober2.year[m]):
+                    stober2['n_days']=366
+            stober2['jdy']=stober2['year']+stober2['doy']/stober2['n_days']
+
+            
         plt.close()
         plt.clf()
         fig, ax = plt.subplots(figsize=(9,7))
@@ -294,7 +413,7 @@ for geoid in geoids:
         y2=yx[v]
     
     
-        # exclude suspicious values
+        # exclude suspicious values else plot stober
         if nicknames[k]=='SWC':
             inv=np.where((x<2005)&(y<1125))
             inv=inv[0]
@@ -303,6 +422,24 @@ for geoid in geoids:
             inv=np.where((x>2015)&(y<1120))
             inv=inv[0]
             y[inv]=np.nan
+            
+            # plt.plot(stober2['jdy'],(stober2['elev0']+stober2['elev1']+stober2['elev2'])/3,'s',color='k',label=f"Stober {peg}, est.EGM96 using {uncert_z}m offset:\n%.1f"%np.mean(stober2['elev0'])+"±%.1f"%np.std(stober2['elev0'])+' m')
+            # plt.plot(stober2['jdy'],stober2['elev0'],'s',color='k',label=f"Stober {peg}, est.EGM96 using {uncert_z}m offset:\n%.1f"%np.mean(stober2['elev0'])+"±%.1f"%np.std(stober2['elev0'])+' m')
+            os_khan=10
+            plt.plot([2005,2020],[1150-os_khan,1150-os_khan-18],'--',color='k',label='Khan, pers. comm. 16/1/2024, -18 m')
+
+        # exclude suspicious values else plot stober
+        if nicknames[k]=='JAR':
+            # inv=np.where((x<2005)&(y<1125))
+            # inv=inv[0]
+            # y[inv]=np.nan
+
+            # inv=np.where((x>2015)&(y<1120))
+            # inv=inv[0]
+            # y[inv]=np.nan
+            
+            plt.plot(stober2['jdy'],stober2['elev'],'s',color='k',label="Stober ST201 minus 67 m, est.EGM96: %.1f"%np.mean(stober2['elev'])+"±%.1f"%np.std(stober2['elev'])+' m')
+
 
         if nicknames[k]=='CP1':
             inv=np.where((x>2005)&(y>1960))
@@ -381,7 +518,7 @@ for geoid in geoids:
                           })
         
         suffix=''
-        fn = Path(f'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/output/Jason/{nicknames[k]}_positions_monthly.csv')
+        fn = Path(f'./output/Jason/{nicknames[k]}_positions_monthly.csv')
         cat_flag=0
         if fn.is_file():
             # print(fn)
@@ -442,9 +579,9 @@ for geoid in geoids:
     
         plt.hlines(meta.elev.values[k],year0,year1,color='k',label="Table 4 Vandecrux er al 2023: %.0f"%meta.elev.values[k]+' m')
     
-        plt.legend()
+        plt.legend(fontsize=10)
         
-        ly='p'
+        ly='x'
         if ly =='x':plt.show()
         if ly =='p':
             plt.savefig(f'./ATM/Figs/{nicknames[k]}_{geoid}.png', bbox_inches='tight', dpi=150)
@@ -452,7 +589,7 @@ for geoid in geoids:
             #     plt.savefig(f'./ATM/Figs/has_GEUS_AWS_GPS/{nicknames[k]}_{geoid}_{suffix}.png', bbox_inches='tight', dpi=150)
 
 #%%
-wo=1
+wo=0
 meta.columns
 outx=meta.copy()
 

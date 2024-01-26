@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
-    <Document id="7193">
-        <Style id="7196">
-            <IconStyle id="7198">
+    <Document id="673">
+        <Style id="676">
+            <IconStyle id="678">
                 <colorMode>normal</colorMode>
                 <scale>1</scale>
                 <heading>0</heading>
-                <Icon id="7199">
+                <Icon id="679">
                     <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
                 </Icon>
             </IconStyle>
-            <LabelStyle id="7197">
+            <LabelStyle id="677">
                 <color>ff0000ff</color>
                 <colorMode>normal</colorMode>
                 <scale>1.5</scale>
             </LabelStyle>
         </Style>
         <open>1</open>
-        <Placemark id="7195">
+        <Placemark id="675">
             <name>JAR_O_2023_09</name>
-            <styleUrl>#7196</styleUrl>
-            <Point id="7194">
+            <styleUrl>#676</styleUrl>
+            <Point id="674">
                 <coordinates>-49.67184090000001,69.49446979999999,0.0</coordinates>
                 <altitudeMode>relativeToGround</altitudeMode>
             </Point>
