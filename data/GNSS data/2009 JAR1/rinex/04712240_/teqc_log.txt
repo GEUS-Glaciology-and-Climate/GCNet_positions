@@ -1,0 +1,56 @@
+Detected Trimble .T0? file -> Running runpkr00 to extract .tgd or .dat file
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+filename:                /Users/nylen/Dropbox (Personal)/Mac/Downloads/Transfer/2010 JAR1 gps/04712240.dat
+file format:             Trimble .dat
+file size (bytes):       2012372
+start date & time:       2009-08-12 00:00:00.000
+final date & time:       2009-08-12 23:59:30.000
+sample interval:         30.0000
+possible missing epochs: 0
+4-char station code:     2240
+station name:            04712240
+station ID number:       
+antenna ID number:       -Unknown-
+antenna type:            TRM39105.00     NONE
+antenna latitude (deg):      69.495372746
+antenna longitude (deg):    -49.701339825
+antenna elevation (m):           952.4105
+antenna height (m):      0.0000
+receiver ID number:      0220400471
+receiver type:           TRIMBLE R7
+receiver firmware:       2.30
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+         L1    L2    C1    P2    S1    S2 
+        ----  ----  ----  ----  ----  ----
+   G09   854   854   854   854   854   854
+   G17   871   871   871   871   871   871
+   G27   924   924   924   924   924   924
+   G11   801   801   801   801   801   801
+   G32   924   924   924   924   924   924
+   G26   848   847   848   847   848   847
+   G28   915   915   915   915   915   915
+   G14   891   890   891   890   891   890
+   G20   883   880   883   880   883   880
+   G04   821   820   821   820   821   820
+   G12   896   896   896   896   896   896
+   G23   899   899   899   899   899   899
+   G30   859   859   859   859   859   859
+   G02   835   835   835   835   835   835
+   G31   865   865   865   865   865   865
+   G13   903   903   903   903   903   903
+   G29   902   902   902   902   902   902
+   G10   831   831   831   831   831   831
+   G25   910   910   910   910   910   910
+   G24   883   883   883   883   883   883
+   G16   853   853   853   853   853   853
+   G07   894   894   894   894   894   894
+   G08   904   903   904   903   904   903
+   G21   895   894   895   894   895   894
+   G15   848   848   848   848   848   848
+   G06   854   854   854   854   854   854
+   G03   814   814   814   814   814   814
+   G18   873   872   873   872   873   872
+   G19   853   852   853   852   853   852
+   G22   883   883   883   883   883   883
+

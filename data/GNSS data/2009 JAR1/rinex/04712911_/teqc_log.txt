@@ -1,0 +1,37 @@
+Detected Trimble .T0? file -> Running runpkr00 to extract .tgd or .dat file
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+filename:                /Users/nylen/Dropbox (Personal)/Mac/Downloads/Transfer/2010 JAR1 gps/04712911.dat
+file format:             Trimble .dat
+file size (bytes):       70480
+start date & time:       2009-10-18 23:10:30.000
+final date & time:       2009-10-18 23:59:30.000
+sample interval:         30.0000
+possible missing epochs: 0
+4-char station code:     2911
+station name:            04712911
+station ID number:       
+antenna ID number:       -Unknown-
+antenna type:            TRM39105.00     NONE
+antenna latitude (deg):      69.495326025
+antenna longitude (deg):    -49.701629645
+antenna elevation (m):           950.9177
+antenna height (m):      0.0000
+receiver ID number:      0220400471
+receiver type:           TRIMBLE R7
+receiver firmware:       2.30
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+         L1    L2    C1    P2    S1    S2 
+        ----  ----  ----  ----  ----  ----
+   G02    99    99    99    99    99    99
+   G04    99    99    99    99    99    99
+   G10    99    99    99    99    99    99
+   G12     8     8     8     8     8     8
+   G13    99    99    99    99    99    99
+   G23    99    99    99    99    99    99
+   G29    99    99    99    99    99    99
+   G30    77    77    77    77    77    77
+   G31    45    45    45    45    45    45
+   G05    86    86    86    86    86    86
+   G25    55    55    55    55    55    55
+

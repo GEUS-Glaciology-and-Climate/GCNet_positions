@@ -239,7 +239,13 @@ for geoid in geoids:
     'Saddle', 'South Dome', 'NASA-E', 'NASA-SE', 'NGRIP', 'NEEM',
     'EastGRIP', 'KAR', 'KULU', 'Aurora', 'Petermann Glacier',
     'Petermann ELA']
-    
+
+    # site names compatible with interpolated lat lons
+    sites2=['Swiss Camp', 'Crawford Pt. 1', 'CP2', 'JAR1', 'JAR2', 'JAR3',
+    'NASA-U', 'GITS', 'Humboldt', 'Summit', 'Tunu-N', 'DYE-2',
+    'Saddle', 'South Dome', 'NASA-E', 'NASA-SE', 'NGRIP', 'NEEM',
+    'East Grip', 'KAR', 'KULU', 'Aurora', 'Petermann Glacier',
+    'Petermann ELA']    
     
     constrain_elev=0
     do_GEUS_GPS=1
@@ -252,14 +258,14 @@ for geoid in geoids:
     choice_site=0 ; elev0=1116 ; elev1=1157 # SWC
     choice_site=1 # CP1
     choice_site=2 # CP2
-    choice_site=3 # JAR1
-    choice_site=4 # JAR2
+    # choice_site=3 # JAR1
+    # choice_site=4 # JAR2
     # choice_site=5 # JAR3
-    # choice_site=6 # NAU
+    choice_site=6 # NAU
     # choice_site=7 # GIT
-    # choice_site=8 # HUM
+    choice_site=8 # HUM
     # choice_site=9 # SUM
-    # choice_site=10 # TUN
+    choice_site=10 # TUN
     # choice_site=11 # DY2
     # choice_site=12 # SDL
     # choice_site=13 # SDM
@@ -279,6 +285,38 @@ for geoid in geoids:
     time_ATM_decimal_year_v2=np.zeros(n_years)
     dist=np.zeros(n_years)
 
+    def elev_v_time_interpolation(fn,sites2,k):
+        print(f'elev_v_time_interpolation ',sites2[k])
+        pos_v_time=pd.read_csv(fn)
+        # implement elevation approximation
+        n_time_epochs=len(time_elev_approximation)
+        pos_v_time['date']=pd.to_datetime(pos_v_time['date'])
+        pos_v_time['year']=pos_v_time['date'].dt.year
+        pos_v_time['doy']=pos_v_time['date'].dt.day_of_year
+        pos_v_time['n_days']=365
+        for m in range(len(pos_v_time)):
+            if calendar.isleap(pos_v_time.year[m]):
+                pos_v_time['n_days']=366
+        pos_v_time['jdy']=pos_v_time['year']+pos_v_time['doy']/pos_v_time['n_days']
+        
+        pos_v_time['elev']=np.nan
+        for l in range(n_time_epochs-1):
+            # print(l)
+            dz=elev_approximation[l+1]-elev_approximation[l]
+            dx=time_elev_approximation[l+1]-time_elev_approximation[l]
+            m=dz/dx
+            b=elev_approximation[l]-m*time_elev_approximation[l]
+            v=((pos_v_time['jdy']>=time_elev_approximation[l])&(pos_v_time['jdy']<time_elev_approximation[l+1]))
+            pos_v_time['elev'][v]=m*pos_v_time['jdy'][v]+b
+        plt.close()
+        plt.plot(pos_v_time['elev'])
+        # print(pos_v_time)
+        # adjust data precision
+        vals=['elev']
+        for val in vals:
+            pos_v_time[val] = pos_v_time[val].map(lambda x: '%.1f' % x)
+        pos_v_time.to_csv(f'./output/{sites2[k]}_position_interpolated_with_elev.csv',columns=['date','lon','lat','elev'],index=None)
+        return None
         
     # n_AWS=1
     # for k in range(n_AWS):
@@ -301,8 +339,8 @@ for geoid in geoids:
             GNSS_2023_elev_pick=GNSS_2023.elev.values[v][0]
 
         if nicknames[k]=='SWC':
-            time_elev_approximation=[1990.5,2005,2015,2020,2023.5]
-            elev_approximation=[1155.5,1135,1122,1119.2,1119.2]
+            time_elev_approximation=[1990.0,1990.5,2005,2015,2020,2023.5]
+            elev_approximation=[1155.5,1155.5,1135,1122,1119.2,1119.2]
         if nicknames[k]=='CP1':
             time_elev_approximation=[1995,2023.5]
             elev_approximation=[1960,GNSS_2023_elev_pick]
@@ -380,7 +418,14 @@ for geoid in geoids:
             elev_approximation=[949,940]
             min_tolerated_dist=3
 
-        if choice_site==3: #JAR
+        
+        # read in interpolated lat lon
+        fn=f'./output/{sites2[k]}_position_interpolated.csv'
+        elev_v_time_interpolation(fn,sites2,k)
+
+        #%%
+        
+        if nicknames[k]=='JAR': # JAR
             # v=np.where(((df.name_long=='JAR1')&(df.elev>940)))
             # v=np.where(df.name_long=='JAR1')
             # ix=v[0]
@@ -430,7 +475,6 @@ for geoid in geoids:
                     stober2['n_days']=366
             stober2['jdy']=stober2['year']+stober2['doy']/stober2['n_days']
 
-# 
         if nicknames[k]=='SWC': # SWC
             
             fn='./meta/Stober_et_al_2023/SWC+ST2-Alle Pegel_Koordinaten Geodätisch.xlsx'
@@ -594,7 +638,7 @@ for geoid in geoids:
             # plt.plot(ATM_dates,y2,'s', fillstyle='none',markersize=ms,label="ATM with slope cor: %.1f"%np.mean(yx[v])+"±%.1f"%np.std(yx[v])+' m')
         
         if ~np.isnan(GNSS_2023_elev_pick):
-            lab="Jakobsen GEUS 2023 GNSS: %.1f"%GNSS_2023_elev_pick+'±0.1 m'
+            lab="Jakobsen et al. GEUS 2023 GNSS: %.1f"%GNSS_2023_elev_pick+'±0.1 m'
             plt.plot(GNSS_2023_decimal_year,GNSS_2023_elev_pick,'o', fillstyle='none',color='c',markersize=ms, mew=2,label=lab,zorder=20)
 
         # if len(x)>1:
@@ -710,6 +754,24 @@ for geoid in geoids:
         # out_cat.to_csv(f'./ATM/output/merged_ATM_AWS/{nicknames[k]}.csv',index=None)
         plt.hlines(meta.elev.values[k],year0,year1,linestyle='--',color='grey',label="Table 4 Vandecrux er al 2023: %.0f"%meta.elev.values[k]+' m')
 
+        if nicknames[k]=='JAR':
+            GPS_2010=pd.read_csv('./data/GNSS data/2009 JAR1/gnss_jar_all.csv')
+            print(GPS_2010.columns)
+            geoid_offset=-meta[geoid].values[k]
+            GPS_2010['elev']=GPS_2010['ellipsoidal_height_m']+geoid_offset
+            GPS_2010['jy']=GPS_2010.year+GPS_2010.day_of_year/365
+            mean_GPS_2010=np.mean(GPS_2010['elev'])
+            std_GPS_2010=np.std(GPS_2010['elev'])
+            plt.plot(GPS_2010['jy'],GPS_2010['elev'],'*',c='r',
+                     label="GPS 2010, EGM96: %.0f"%mean_GPS_2010+"±%.0f"%std_GPS_2010+' m',
+                     zorder=30)
+
+        if nicknames[k]=='SUM':
+            value=3210.442 ; uncert=np.nan
+            plt.plot([2011.5,2012.5],[value,value],'-*',c='r',
+                     label="Greenland_GNSS_2011_2012.shp %.0f"%value+"±%.0f"%uncert+' m',
+                     zorder=30)
+            
         if show_approximation_elev_history:
             dy=np.min(elev_approximation)-np.max(elev_approximation)
             dx=np.max(time_elev_approximation)-np.min(time_elev_approximation)
@@ -718,17 +780,27 @@ for geoid in geoids:
             print('N years %.0f'%dx+' m')
             dhdt=dy/dx
             print('linear dhdt %.0f'%dhdt+' m')
-            plt.plot(time_elev_approximation,elev_approximation,'-s',c='m',label='approximation of elevation change:\n%.0f'%dy+' m, %.1f'%dhdt+' m y$^{-1}$ over %.1f'%dx+' years',zorder=30)
+            plt.plot(time_elev_approximation,elev_approximation,'-s',c='m',
+                     label='approximation of elevation change:\n%.0f'%dy+' m, %.1f'%dhdt+' m y$^{-1}$ over %.1f'%dx+' years',zorder=30)
     
-        plt.legend(fontsize=10)
+        plt.legend(fontsize=8)
         
         if constrain_elev:
             plt.ylim(elev0,elev1)
         
+        # ----------- annotation
+        xx0=-0.07 ; yy0=-0.11
+        mult=0.8
+        co=0.4
+        cwd=__file__  #cwd=os.getcwd()
+        plt.text(xx0, yy0, cwd.replace('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions','.'),
+                fontsize=font_size*mult,color=[co,co,co],rotation=0,
+                transform=ax.transAxes,zorder=20,ha='left') # 
+        
         ly='p'
         if ly =='x':plt.show()
         if ly =='p':
-            plt.savefig(f'./figs/GC-Net_AWS_barometer_elevation_change_reconstructions/{nicknames[k]}_{geoid}.png', bbox_inches='tight', dpi=100)
+            plt.savefig(f'./figs/GC-Net_AWS_barometer_elevation_change_reconstructions/{nicknames[k]}_{geoid}.png', bbox_inches='tight', dpi=120)
             # if suffix!='':
             #     plt.savefig(f'./ATM/Figs/has_GEUS_AWS_GPS/{nicknames[k]}_{geoid}_{suffix}.png', bbox_inches='tight', dpi=150)
 
