@@ -20,6 +20,8 @@ see ATM folder in this repository
 for the GEUS GPS, this scripts reads output from which currently has some simple filtering of SDL and CP1 outliers
     ./GCN_positions_timeseries_v_thredds.py
 
+the code outputs position_interpolated_with_elev.csv files used by ./GC-Net_1995-2020_w_hourly_positions/src/merge_positions_incl_elev_with_met_data.py
+
 """
 
 from glob import glob
@@ -258,14 +260,14 @@ for geoid in geoids:
     choice_site=0 ; elev0=1116 ; elev1=1157 # SWC
     choice_site=1 # CP1
     choice_site=2 # CP2
-    # choice_site=3 # JAR1
+    choice_site=3 # JAR1
     # choice_site=4 # JAR2
     # choice_site=5 # JAR3
-    choice_site=6 # NAU
+    # choice_site=6 # NAU
     # choice_site=7 # GIT
-    choice_site=8 # HUM
+    # choice_site=8 # HUM
     # choice_site=9 # SUM
-    choice_site=10 # TUN
+    # choice_site=10 # TUN
     # choice_site=11 # DY2
     # choice_site=12 # SDL
     # choice_site=13 # SDM
@@ -345,7 +347,7 @@ for geoid in geoids:
             time_elev_approximation=[1995,2023.5]
             elev_approximation=[1960,GNSS_2023_elev_pick]
         if nicknames[k]=='JAR':
-            time_elev_approximation=[1996.5,2010,2015,2023.5]
+            time_elev_approximation=[1996.45,2010,2015,2023.5]
             elev_approximation=[932.3,919.5,909,906]
         if nicknames[k]=='JR2':
             time_elev_approximation=[1999,2020]
@@ -419,9 +421,25 @@ for geoid in geoids:
             min_tolerated_dist=3
 
         
-        # read in interpolated lat lon
-        fn=f'./output/{sites2[k]}_position_interpolated.csv'
-        elev_v_time_interpolation(fn,sites2,k)
+        if ((nicknames[k]!='GIT')&(nicknames[k]!='SUM')
+            &(nicknames[k]!='SDL')
+            &(nicknames[k]!='SDM')
+            &(nicknames[k]!='NGRP')
+            &(nicknames[k]!='KAR')
+            &(nicknames[k]!='JR2')
+            ):
+
+            # read in interpolated lat lon
+            fn=f'./output/{sites2[k]}_position_interpolated.csv'
+            elev_v_time_interpolation(fn,sites2,k)
+        else:
+            d = {
+                'time_elev_approximation': time_elev_approximation,
+                    'elev_approximation': elev_approximation,
+                 }
+            ser = pd.DataFrame(data=d)
+            ser.to_csv(f'./output/{sites2[k]}_position_info.csv')
+
 
         #%%
         
@@ -783,6 +801,7 @@ for geoid in geoids:
             plt.plot(time_elev_approximation,elev_approximation,'-s',c='m',
                      label='approximation of elevation change:\n%.0f'%dy+' m, %.1f'%dhdt+' m y$^{-1}$ over %.1f'%dx+' years',zorder=30)
     
+            elev_approximation
         plt.legend(fontsize=8)
         
         if constrain_elev:

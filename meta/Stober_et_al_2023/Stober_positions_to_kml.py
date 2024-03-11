@@ -31,15 +31,76 @@ def save_kml(lat,lon,namex,opath,ofile):
 
 # ## change to your system's login name to change dir for local work
 if os.getlogin() == 'jason':
-    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions.stash/'
+    base_path = '/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/'
 
 
 fn='./meta/Stober_et_al_2023/SWC+ST2-Alle Pegel_Koordinaten Geodätisch.xlsx'
+fn='/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/Stober_et_al_2023/SWC+ST2-Alle Pegel_Koordinaten Geodätisch.xlsx'
 # os.system('open '+fn)
 stober=pd.read_excel(fn,skiprows=7,names=['latdeg','latmin','latsec','NS','lat','emt','londeg','lonmin','lonsec','EW','lon','elevation'],index_col=0)
 # stober = stober.iloc[:-32]
-stober_dates=[]
-stober_elevs=[]
+
+years=np.arange(1991,2015).astype(str)
+
+for year in years:
+    stober_dates=[]
+    stober_elevs=[]
+
+    name=[]
+    datexs=[]
+    lats=[]
+    lons=[]
+    elevs=[]
+
+    for i,temp in enumerate(stober.index):
+        temp=str(temp)
+        temp.replace('106-ex010915','nan')
+        temp.replace('ex010915','nan')
+        temp.replace('ex010915','nan')
+        # print(i,temp)
+        if temp!='ST2' and temp!='nan' and temp[4:]!='ex010915':
+            lat=stober.lat.values[i]
+            lon=-stober.lon.values[i]
+            osx=4
+            if i>57:
+                osx=6
+            pegel=temp[0:osx-1]
+            datex=pd.to_datetime(temp[osx:],format=('%d%m%y'))
+    
+            if datex.strftime('%Y')==year:
+                name.append(pegel)#+'_'+datex.strftime('%Y-%m-%d'))
+                lats.append(lat)
+                lons.append(lon)
+                elevs.append(stober.elevation.values[i])
+                # datexs.append(datex.strftime('%Y-%m-%d'))
+                print(pegel,datex.strftime('%Y-%m-%d'),lat,lon,stober.elevation.values[i])
+            
+            # if pegel=='106':
+            #     stober_dates.append(datex.strftime('%Y-%m-%d'))
+            #     stober_elevs.append(stober.elevation.values[i]-1.08)#-25)
+            
+            #save_kml(lat,lon,pegel+' '+datex.strftime('%Y-%m-%d'),'./output/kml/Stober_Swiss_Camp/',pegel+' '+datex.strftime('%Y-%m-%d'))
+    
+    
+    name=np.array(name)
+    # datexs=np.array(datexs)
+    lats=np.array(lats)
+    lons=np.array(lons)
+    elevs=np.array(elevs)
+    out=pd.DataFrame({'site':name.astype(str),
+                  'lat':lats.astype(float),
+                  'lon':lons.astype(float),
+                  'elev':elevs.astype(float),
+                  })
+    # outx = outx.rename({'year': 'elev_assumed_earlier'}, axis=1)
+    
+    vals=['elev']
+    for val in vals:
+        out[val] = out[val].map(lambda x: '%.2f' % x)
+    
+    out.to_csv(f'/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/Stober_et_al_2023/Stober_positions_{year}.csv',index=None)
+    
+#%%
 for i,temp in enumerate(stober.index):
     temp=str(temp)
     temp.replace('106-ex010915','nan')
@@ -55,8 +116,34 @@ for i,temp in enumerate(stober.index):
         pegel=temp[0:osx-1]
 
         datex=pd.to_datetime(temp[osx:],format=('%d%m%y'))
+        name.append(pegel+'_'+datex.strftime('%Y-%m-%d'))
+        lats.append(lat)
+        lons.append(lon)
+        elevs.append(stober.elevation.values[i])
+        # datexs.append(datex.strftime('%Y-%m-%d'))
         print(pegel,datex.strftime('%Y-%m-%d'),lat,lon,stober.elevation.values[i])
+        
         # if pegel=='106':
         #     stober_dates.append(datex.strftime('%Y-%m-%d'))
         #     stober_elevs.append(stober.elevation.values[i]-1.08)#-25)
-        save_kml(lat,lon,pegel+' '+datex.strftime('%Y-%m-%d'),'./output/kml/Stober_Swiss_Camp/',pegel+' '+datex.strftime('%Y-%m-%d'))
+        
+        #save_kml(lat,lon,pegel+' '+datex.strftime('%Y-%m-%d'),'./output/kml/Stober_Swiss_Camp/',pegel+' '+datex.strftime('%Y-%m-%d'))
+
+
+name=np.array(name)
+# datexs=np.array(datexs)
+lats=np.array(lats)
+lons=np.array(lons)
+elevs=np.array(elevs)
+out=pd.DataFrame({'site':name.astype(str),
+              'lat':lats.astype(float),
+              'lon':lons.astype(float),
+              'elev':elevs.astype(float),
+              })
+# outx = outx.rename({'year': 'elev_assumed_earlier'}, axis=1)
+
+vals=['elev']
+for val in vals:
+    out[val] = out[val].map(lambda x: '%.2f' % x)
+
+out.to_csv('/Users/jason/Dropbox/AWS/GCNET/GCNet_positions/meta/Stober_et_al_2023/Stober_positions.csv',index=None)
