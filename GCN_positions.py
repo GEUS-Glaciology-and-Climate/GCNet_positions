@@ -48,6 +48,19 @@ def toYearFraction(date):
 
     return date.year + fraction
 
+sites = [
+    "Swiss Camp", "Crawford Point 1", "CP2", "JAR1", "JAR2", "JAR3",
+    "NASA-U", "GITS", "Humboldt", "Summit", "Tunu-N", "DYE-2",
+    "Saddle", "South Dome", "NASA-E", "NASA-SE", "NGRIP", "NEEM",
+    "EastGRIP", "KAR", "KULU", "Aurora", "Petermann Glacier", "Petermann ELA",
+]
+sites2 = [
+    "Swiss Camp", "Crawford Pt. 1", "CP2", "JAR1", "JAR2", "JAR3",
+    "NASA-U", "GITS", "Humboldt", "Summit", "Tunu-N", "DYE-2",
+    "Saddle", "South Dome", "NASA-E", "NASA-SE", "NGRIP", "NEEM",
+    "East Grip", "KAR", "KULU", "Aurora", "Petermann Glacier", "Petermann ELA",
+]
+site_alias = dict(zip(sites2,sites))
 plt.close('all')
 # col = cm('Spectral',32)
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -131,7 +144,7 @@ for j in df_pos.id.unique():
     # ax[1].grid()
     # plt.suptitle(station)
 
-    tmp_interp.to_csv('output/'+station+'_position_interpolated.csv', float_format='%.5f')
+    tmp_interp.to_csv('output/'+site_alias[station]+'_position_interpolated.csv', float_format='%.5f')
 
     tmp_interp_y['site'] = station
     if len(df_all)==0:
